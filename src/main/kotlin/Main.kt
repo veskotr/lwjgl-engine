@@ -24,9 +24,10 @@ fun main() {
     sampleObject.renderer = SpriteRenderer(sprite = sprite)
 
     val sampleObject2 = EngineObject()
-    sampleObject2.transform.scale(Vector2f(32f,64f))
+    sampleObject2.transform.scale(Vector2f(32f, 32f))
     sampleObject2.transform.position = Vector2f(128f, 64f)
     sampleObject2.renderer = SpriteRenderer(sprite = sprite)
+    sampleObject2.addComponent(SampleComponent())
 
     startGame()
 

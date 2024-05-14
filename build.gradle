@@ -33,20 +33,25 @@ switch (OperatingSystem.current()) {
 }
 
 repositories {
+    flatDir {
+        dirs 'libs'
+    }
     mavenCentral()
 }
 
 dependencies {
     implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 
-    implementation 'org.dyn4j:dyn4j:4.2.0'
     implementation 'commons-io:commons-io:2.16.1'
+
+    implementation name: 'jbox2d-library-2.2.1.1'
 
     implementation "org.lwjgl:lwjgl"
     implementation "org.lwjgl:lwjgl-assimp"
     implementation "org.lwjgl:lwjgl-bgfx"
     implementation "org.lwjgl:lwjgl-freetype"
     implementation "org.lwjgl:lwjgl-glfw"
+    implementation "org.lwjgl:lwjgl-harfbuzz"
     implementation "org.lwjgl:lwjgl-nanovg"
     implementation "org.lwjgl:lwjgl-nuklear"
     implementation "org.lwjgl:lwjgl-openal"
@@ -59,6 +64,7 @@ dependencies {
     runtimeOnly "org.lwjgl:lwjgl-bgfx::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-freetype::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-harfbuzz::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-nanovg::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-nuklear::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-openal::$lwjglNatives"

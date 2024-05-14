@@ -14,7 +14,7 @@ import io.windowShouldClose
 
 private var timePassed = 0.0
 private var frames = 0
-var deltaTime = 0.0
+var deltaTime = 0.01
 var lastTime = 0L
 
 fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScreen: Boolean, vsyncEnabled: Boolean) {
@@ -53,7 +53,6 @@ private fun updateTime() {
     frames++
     if (timePassed >= 1) {
         println("FPS: $frames")
-        println(deltaTime)
         timePassed = 0.0
         frames = 0
     }

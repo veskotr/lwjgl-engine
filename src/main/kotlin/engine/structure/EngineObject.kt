@@ -49,9 +49,9 @@ class EngineObject : IEngineObject {
         children.forEach(IEngineObject::update)
         transform.frameVelocity = Vector2f()
         if (parent != null) {
-            transform.rotation = Quaternionf(parent!!.transform.rotation)
-            transform.position = Vector2f(parent!!.transform.position)
             transform.scale = Vector2f(parent!!.transform.scale)
+            transform.position = Vector2f(parent!!.transform.position)
+            transform.rotation = Quaternionf(parent!!.transform.rotation)
         }
     }
 
