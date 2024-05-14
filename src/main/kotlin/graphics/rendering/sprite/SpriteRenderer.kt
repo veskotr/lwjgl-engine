@@ -14,7 +14,7 @@ class SpriteRenderer(override val shader: Shader = defaultShader, val sprite: Sp
     override fun render() {
         shader.bind()
         shader.setUniform(PROJECTION_UNIFORM, getCameraProjectionMatrix())
-        shader.setUniform(TRANSFORM_UNIFORM, parentObject!!.transform.getTransform())
+        shader.setUniform(TRANSFORM_UNIFORM, parentObject!!.transform.getWorldTransform())
         shader.setUniform(HAS_TEXTURE_UNIFORM, 1)
         shader.setUniform(SAMPLER_UNIFORM, 0)
         sprite.bindTexture(0)

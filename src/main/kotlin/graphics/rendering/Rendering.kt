@@ -8,6 +8,8 @@ val defaultShader = createBasicShader()
 
 private var renderers = mutableListOf<Renderer>()
 
+var boundModel: Model? = null
+
 fun initRendering() {
     defaultShader.bindAttributeLocation(0, "vertices")
     defaultShader.bindAttributeLocation(1, "textures")

@@ -4,15 +4,15 @@ import org.joml.Quaternionf
 import org.joml.Vector2f
 
 class SampleComponent : EngineComponent() {
+    val rotation = Quaternionf()
 
 
     override fun start() {
-        parentObject!!.transform.scale(Vector2f(1f, 2f))
     }
 
     override fun update() {
-        val rotation = Quaternionf()
         rotation.rotateZ(Math.toRadians(90 * deltaTime).toFloat())
-        parentObject!!.transform.rotate(rotation)
+        parentObject!!.transform.position = Vector2f(0f, 0f)
+        parentObject!!.transform.rotation = rotation
     }
 }

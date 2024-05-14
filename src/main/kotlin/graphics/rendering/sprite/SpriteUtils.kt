@@ -4,9 +4,10 @@ import graphics.Texture
 import graphics.rendering.SquareModel
 import org.joml.Vector2f
 
+val defaultSquareModel = SquareModel()
 
 fun createSprite(texture: Texture): Sprite {
-    return Sprite(texture, SquareModel())
+    return Sprite(texture, defaultSquareModel)
 }
 
 fun sliceSpriteSheet(texture: Texture, spriteSize: Vector2f): List<Sprite> {

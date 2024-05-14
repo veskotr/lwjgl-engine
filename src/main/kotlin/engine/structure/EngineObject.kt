@@ -44,15 +44,8 @@ class EngineObject : IEngineObject {
     }
 
     override fun update() {
-        transform.position.add(transform.frameVelocity)
         components.forEach(IEngineObject::update)
         children.forEach(IEngineObject::update)
-        transform.frameVelocity = Vector2f()
-        if (parent != null) {
-            transform.scale = Vector2f(parent!!.transform.scale)
-            transform.position = Vector2f(parent!!.transform.position)
-            transform.rotation = Quaternionf(parent!!.transform.rotation)
-        }
     }
 
     fun addComponent(component: EngineComponent): EngineComponent {
