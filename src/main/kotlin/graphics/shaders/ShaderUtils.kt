@@ -36,12 +36,17 @@ private const val fragmentCode = "#version 120\n" +
         "    vec4 texture;\n" +
         "    if (hasTexture == 1){\n" +
         "        texture = texture2D(sampler, texCoords);\n" +
-        "        texture *= color;\n" +
+        "        //texture *= color;\n" +
         "    }else {\n" +
         "        texture = color;\n" +
         "    }\n" +
         "    gl_FragColor = texture;\n" +
         "}"
+
+const val PROJECTION_UNIFORM = "projection"
+const val TRANSFORM_UNIFORM = "model"
+const val HAS_TEXTURE_UNIFORM = "hasTexture"
+const val SAMPLER_UNIFORM = "sampler"
 
 fun createShader(vertexCode: String, fragmentCode: String): Shader {
     val program = glCreateProgram()

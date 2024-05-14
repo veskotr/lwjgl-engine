@@ -3,21 +3,34 @@ package engine.structure
 import engine.addEngineObject
 import engine.geometry.Transform
 import engine.removeEngineObject
+import graphics.rendering.Renderer
 import org.joml.Quaternionf
 import org.joml.Vector2f
-import java.util.function.Consumer
 
-class EngineObject() : IEngineObject {
+class EngineObject : IEngineObject {
 
-    private val transform: Transform = Transform(this)
+    val transform: Transform = Transform(this)
 
     private val components: MutableSet<EngineComponent> = mutableSetOf()
 
     private val children: MutableSet<EngineObject> = mutableSetOf()
 
+    var renderer: Renderer? = null
+        set(value) {
+            field = value
+            field!!.parentObject = this
+        }
+
     var parent: EngineObject? = null
 
     var active = false
+        set(value) {
+            components.forEach { it.active = value }
+
+            children.forEach { it.active = value }
+
+            field = value
+        }
 
     init {
         addEngineObject(this)
@@ -42,12 +55,8 @@ class EngineObject() : IEngineObject {
         }
     }
 
-    fun getTransform(): Transform? {
-        return transform
-    }
-
-    fun addComponent(component: EngineComponent): EngineComponent? {
-        component.setParentObject(this)
+    fun addComponent(component: EngineComponent): EngineComponent {
+        component.parentObject = this
         this.components.add(component)
         return component
     }
@@ -64,10 +73,4 @@ class EngineObject() : IEngineObject {
         } else children.elementAt(id)
     }
 
-    fun setActive(active: Boolean) {
-        components.forEach { it.setActive(active) }
-
-        children.forEach { it.setActive(active) }
-        this.active = active
-    }
 }

@@ -23,7 +23,7 @@ fun setCameraPositionInWorldSpace(position: Vector2f) {
     cameraPosition = position
 }
 
-fun getProjectionMatrix(): Matrix4f {
+fun getCameraProjectionMatrix(): Matrix4f {
     return projection!!.scale(Vector3f(cameraScale, 0f)).translate(Vector3f(cameraPosition, 0f), Matrix4f())
 }
 

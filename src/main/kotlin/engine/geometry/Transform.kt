@@ -26,7 +26,7 @@ class Transform(private val engineObject: EngineObject) {
         }
 
     private fun multiplyWithParent(parent: EngineObject, transform: Matrix4f): Matrix4f {
-        val transformed = transform.mul(parent.getTransform()!!.localTransform, Matrix4f())
+        val transformed = transform.mul(parent.transform.localTransform, Matrix4f())
         return if (parent.parent != null) {
             multiplyWithParent(parent.parent!!, transformed)
         } else {

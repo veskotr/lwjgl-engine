@@ -5,7 +5,16 @@ import org.joml.Vector2f
 import org.joml.Vector3f
 import org.joml.Vector4f
 import org.lwjgl.BufferUtils
-import org.lwjgl.opengl.GL20.*
+import org.lwjgl.opengl.GL20.glBindAttribLocation
+import org.lwjgl.opengl.GL20.glGetUniformLocation
+import org.lwjgl.opengl.GL20.glUniform1f
+import org.lwjgl.opengl.GL20.glUniform1i
+import org.lwjgl.opengl.GL20.glUniform2f
+import org.lwjgl.opengl.GL20.glUniform2fv
+import org.lwjgl.opengl.GL20.glUniform3f
+import org.lwjgl.opengl.GL20.glUniform4f
+import org.lwjgl.opengl.GL20.glUniformMatrix4fv
+import org.lwjgl.opengl.GL20.glUseProgram
 import java.nio.FloatBuffer
 
 class Shader(
@@ -29,7 +38,7 @@ class Shader(
     }
 
     fun setUniform(name: String, value: Matrix4f) {
-        value[matrixData]
+        value.get(matrixData)
         val location = glGetUniformLocation(program, name)
         if (location != -1) {
             glUniformMatrix4fv(location, false, matrixData)

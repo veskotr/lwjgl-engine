@@ -12,10 +12,9 @@ import java.nio.ByteBuffer
 
 class Texture {
     private var textureId: Int = 0
-    private var width: Int = 0
-    private var height: Int = 0
+    var width: Int = 0
+    var height: Int = 0
     private var buffer: ByteBuffer? = null
-
 
     constructor(textureId: Int, width: Int, height: Int) {
         this.textureId = textureId
