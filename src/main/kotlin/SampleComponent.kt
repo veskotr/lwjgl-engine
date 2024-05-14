@@ -12,7 +12,6 @@ class SampleComponent : EngineComponent() {
 
     override fun update() {
         rotation.rotateZ(Math.toRadians(90 * deltaTime).toFloat())
-        parentObject!!.transform.position = Vector2f(0f, 0f)
         parentObject!!.transform.rotation = rotation
     }
 }

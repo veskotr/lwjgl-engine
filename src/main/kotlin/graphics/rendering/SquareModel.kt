@@ -14,10 +14,10 @@ class SquareModel : Model {
 
     companion object {
         private val vertices = floatArrayOf(
-            -0.5f,  0.5f,  // top left corner
-            0.5f,  0.5f,  // top right corner
-            -0.5f, -0.5f,  // bottom left corner
-            0.5f, -0.5f   // bottom right corner
+            -1f,  1f,  // top left corner
+            1f,  1f,  // top right corner
+            -1f, -1f,  // bottom left corner
+            1f, -1f   // bottom right corner
         )
 
         private val textures = floatArrayOf(

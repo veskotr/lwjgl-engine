@@ -22,7 +22,7 @@ private const val vertexCode = "#version 120\n" +
         "\n" +
         "    texCoords = textures;\n" +
         "\n" +
-        "    gl_Position = vec4(vertices,0,1);\n" +
+        "    gl_Position = projection * model * vec4(vertices,0,1);\n" +
         "}\n"
 
 private const val fragmentCode = "#version 120\n" +
@@ -98,5 +98,5 @@ fun loadShaderCode(relativeFilePath: String): String {
 }
 
 fun createBasicShader(): Shader {
-    return createShader(vertexCode, fragmentCode)
+    return createShader(loadShaderCode("/shaders/default/vertex.glsl"), loadShaderCode("/shaders/default/fragment.glsl"))
 }

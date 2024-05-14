@@ -12,20 +12,27 @@ class Transform(private val engineObject: EngineObject) {
     var rotation: Quaternionf = Quaternionf()
     var scale: Vector2f = Vector2f(1f, 1f)
 
-    fun getLocalTransform(): Matrix4f {
-        val transform = Matrix4f().translate(Vector3f(position.x, position.y, 0f))
+    fun getTransformationMatrix(): Matrix4f {
+        val transform = if (engineObject.parent != null) {
+            Matrix4f(engineObject.parent!!.transform.getTransformationMatrixWithoutScale())
+        } else {
+            Matrix4f().identity()
+        }
+        transform.translate(Vector3f(position.x, position.y, 0f))
         transform.rotate(rotation)
         transform.scale(Vector3f(scale.x, scale.y, 1f))
         return transform
     }
 
-    fun getWorldTransform(): Matrix4f {
-        var transform = getLocalTransform()
-        var currentParent = engineObject.parent
-        while (currentParent != null) {
-            transform = currentParent.transform.getLocalTransform().mul(transform)
-            currentParent = currentParent.parent
+    private fun getTransformationMatrixWithoutScale(): Matrix4f {
+        val transform = if (engineObject.parent != null) {
+            Matrix4f(engineObject.parent!!.transform.getTransformationMatrix())
+        } else {
+            Matrix4f().identity()
         }
+        transform.translate(Vector3f(position.x, position.y, 0f))
+        transform.rotate(rotation)
         return transform
     }
+
 }
