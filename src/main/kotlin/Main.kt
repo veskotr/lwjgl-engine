@@ -16,7 +16,7 @@ fun main() {
         windowHeight = 980,
         windowTitle = "Test Game",
         fullScreen = false,
-        vsyncEnabled = true
+        vsyncEnabled = false
     )
 
     val sprite = createSprite(Texture("/tile2.png"))
@@ -27,11 +27,13 @@ fun main() {
     ground.renderer = SpriteRenderer(sprite = sprite)
     ground.addComponent(RigidBody(shape = createSquareShape(1920f, 32f), bodyType = org.jbox2d.dynamics.BodyType.STATIC))
 
-    val movableObject = EngineObject()
-    movableObject.transform.scale = (Vector2f(32f))
-    movableObject.transform.position = Vector2f()
-    movableObject.renderer = SpriteRenderer(sprite = sprite)
-    movableObject.addComponent(RigidBody(shape = createSquareShape(32f, 32f)))
+    for (i in 0..30) {
+        val movableObject = EngineObject()
+        movableObject.transform.scale = (Vector2f(32f,32f))
+        movableObject.transform.position = Vector2f(-960 + i * 64f, 0f)
+        movableObject.renderer = SpriteRenderer(sprite = sprite)
+        movableObject.addComponent(RigidBody(shape = createSquareShape(32f, 32f)))
+    }
 
     startGame()
 
