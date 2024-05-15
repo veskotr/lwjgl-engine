@@ -41,7 +41,7 @@ class SampleComponent : EngineComponent() {
     }
 
     override fun update() {
-        world!!.step(1f/60f, 8, 3)
+        //world!!.step(1f/ deltaTime, 8, 3)
         parentObject!!.transform.position = Vector2f(body!!.position.x, body!!.position.y)
     }
 }

@@ -1,14 +1,12 @@
 import engine.initGame
+import engine.physics.RigidBody
+import engine.physics.createSquareShape
 import engine.runGame
 import engine.startGame
 import engine.structure.EngineObject
 import graphics.Texture
 import graphics.rendering.sprite.SpriteRenderer
 import graphics.rendering.sprite.createSprite
-import org.jbox2d.common.Vec2
-import org.jbox2d.dynamics.BodyDef
-import org.jbox2d.dynamics.World
-import org.joml.Quaternionf
 import org.joml.Vector2f
 
 
@@ -23,28 +21,19 @@ fun main() {
 
     val sprite = createSprite(Texture("/tile2.png"))
 
-/*    val sampleObject = EngineObject()
-    sampleObject.transform.scale = (Vector2f(32f))
-    sampleObject.transform.position = (Vector2f(0f, -2.0f))
-    sampleObject.transform.rotation = Quaternionf().rotateZ(Math.toRadians(45.0).toFloat())
-    sampleObject.renderer = SpriteRenderer(sprite = sprite)*/
+    val ground = EngineObject()
+    ground.transform.scale = (Vector2f(1920f,32f))
+    ground.transform.position = (Vector2f(0f, -480f))
+    ground.renderer = SpriteRenderer(sprite = sprite)
+    ground.addComponent(RigidBody(shape = createSquareShape(1920f, 32f), bodyType = org.jbox2d.dynamics.BodyType.STATIC))
 
-    val sampleObject2 = EngineObject()
-    sampleObject2.transform.scale = (Vector2f(32f))
-    sampleObject2.transform.position = (Vector2f(-64f))
-    sampleObject2.renderer = SpriteRenderer(sprite = sprite)
-    sampleObject2.addComponent(SampleComponent())
-    //sampleObject2.addChild(sampleObject)
-/*
-    val sampleObject3 = EngineObject()
-    sampleObject3.transform.scale = (Vector2f(32f))
-    sampleObject3.transform.position = Vector2f()
-    sampleObject3.renderer = SpriteRenderer(sprite = sprite)*/
-    //sampleObject3.addChild(sampleObject2)
+    val movableObject = EngineObject()
+    movableObject.transform.scale = (Vector2f(32f))
+    movableObject.transform.position = Vector2f()
+    movableObject.renderer = SpriteRenderer(sprite = sprite)
+    movableObject.addComponent(RigidBody(shape = createSquareShape(32f, 32f)))
 
     startGame()
-
-
 
     runGame()
 }

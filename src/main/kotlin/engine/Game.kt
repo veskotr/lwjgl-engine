@@ -1,5 +1,6 @@
 package engine
 
+import engine.physics.updatePhysics
 import graphics.rendering.initRendering
 import graphics.rendering.render
 import graphics.utils.cleanupGraphics
@@ -15,7 +16,7 @@ import io.windowShouldClose
 private var timePassed = 0.0
 private var frames = 0
 var deltaTime = 0.01f
-var lastTime = 0L
+private var lastTime = 0L
 
 fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScreen: Boolean, vsyncEnabled: Boolean) {
     initWindow(windowWidth, windowHeight, windowTitle, fullScreen, vsyncEnabled)
@@ -39,8 +40,8 @@ fun runGame() {
         pollEvents()
 
         updateInput()
-        updateEngineObjects()
         updateTime()
+        updatePhysics()
     }
 
     cleanupGraphics()
