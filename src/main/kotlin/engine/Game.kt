@@ -14,7 +14,7 @@ import io.windowShouldClose
 
 private var timePassed = 0.0
 private var frames = 0
-var deltaTime = 0.01
+var deltaTime = 0.01f
 var lastTime = 0L
 
 fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScreen: Boolean, vsyncEnabled: Boolean) {
@@ -48,7 +48,7 @@ fun runGame() {
 }
 
 private fun updateTime() {
-    deltaTime = (System.nanoTime() - lastTime) / 1000000000.0
+    deltaTime = (System.nanoTime() - lastTime) / 1000000000.0f
     timePassed += deltaTime
     frames++
     if (timePassed >= 1) {

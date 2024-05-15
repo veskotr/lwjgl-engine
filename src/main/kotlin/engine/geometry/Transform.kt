@@ -26,7 +26,7 @@ class Transform(private val engineObject: EngineObject) {
 
     private fun getTransformationMatrixWithoutScale(): Matrix4f {
         val transform = if (engineObject.parent != null) {
-            Matrix4f(engineObject.parent!!.transform.getTransformationMatrix())
+            Matrix4f(engineObject.parent!!.transform.getTransformationMatrixWithoutScale())
         } else {
             Matrix4f().identity()
         }
