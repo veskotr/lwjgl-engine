@@ -25,70 +25,23 @@ fun main() {
     val ground = EngineObject()
     ground.transform.scale = (Vector2f(428f, 32f))
     ground.transform.position = (Vector2f(0f, -480f + 32))
+    ground.transform.rotation = 50f
     ground.renderer = SpriteRenderer(sprite = sprite)
     ground.addComponent(
         RigidBody(
             shape = createSquareShape(428f, 32f),
-            bodyType = BodyType.STATIC
+            bodyType = BodyType.KINEMATIC
         )
     )
 
 
-    for (i in 0 until 14) {
-        val movableObject = EngineObject()
-        movableObject.transform.scale = (Vector2f(32f, 32f))
-        movableObject.transform.position = Vector2f(-426 + (64 + 2f) * i, 0f)
-        movableObject.renderer = SpriteRenderer(sprite = sprite)
-        movableObject.addComponent(
-            RigidBody(shape = createSquareShape(32.0f, 32.0f))
-        )
-    }
-    for (i in 0 until 14) {
-        val movableObject = EngineObject()
-        movableObject.transform.scale = (Vector2f(32f, 32f))
-        movableObject.transform.position = Vector2f(-426 + (64 + 2f) * i, 128f)
-        movableObject.renderer = SpriteRenderer(sprite = sprite)
-        movableObject.addComponent(
-            RigidBody(shape = createSquareShape(32.0f, 32.0f))
-        )
-    }
-    for (i in 0 until 14) {
-        val movableObject = EngineObject()
-        movableObject.transform.scale = (Vector2f(32f, 32f))
-        movableObject.transform.position = Vector2f(-426 + (64 + 2f) * i, 256f)
-        movableObject.renderer = SpriteRenderer(sprite = sprite)
-        movableObject.addComponent(
-            RigidBody(shape = createSquareShape(32.0f, 32.0f))
-        )
-    }
-    for (i in 0 until 14) {
-        val movableObject = EngineObject()
-        movableObject.transform.scale = (Vector2f(32f, 32f))
-        movableObject.transform.position = Vector2f(-426 + (64 + 2f) * i, 384f)
-        movableObject.renderer = SpriteRenderer(sprite = sprite)
-        movableObject.addComponent(
-            RigidBody(shape = createSquareShape(32.0f, 32.0f))
-        )
-    }
-    for (i in 0 until 14) {
-        val movableObject = EngineObject()
-        movableObject.transform.scale = (Vector2f(32f, 32f))
-        movableObject.transform.position = Vector2f(-426 + (64 + 2f) * i, 512f)
-        movableObject.renderer = SpriteRenderer(sprite = sprite)
-        movableObject.addComponent(
-            RigidBody(shape = createSquareShape(32.0f, 32.0f))
-        )
-    }
-
-    for (i in 0 until 14) {
-        val movableObject = EngineObject()
-        movableObject.transform.scale = (Vector2f(32f, 32f))
-        movableObject.transform.position = Vector2f(-426 + (64 + 2f) * i, 640f)
-        movableObject.renderer = SpriteRenderer(sprite = sprite)
-        movableObject.addComponent(
-            RigidBody(shape = createSquareShape(32.0f, 32.0f))
-        )
-    }
+    val movableObject = EngineObject()
+    movableObject.transform.scale = (Vector2f(32f, 32f))
+    movableObject.transform.position = Vector2f(-426 + (64 + 2f), 0f)
+    movableObject.renderer = SpriteRenderer(sprite = sprite)
+    movableObject.addComponent(
+        RigidBody(shape = createSquareShape(32.0f, 32.0f), bodyType = BodyType.DYNAMIC)
+    )
 
     startGame()
 
