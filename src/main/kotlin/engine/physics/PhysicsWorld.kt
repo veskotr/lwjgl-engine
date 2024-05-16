@@ -13,7 +13,7 @@ private val world = World(Vec2(0f, -1000f))
 
 private var physicsActive = true
 
-private var physicsTPS = 120
+private var physicsTPS = 60
 private var physicsTimeStep = 1f / physicsTPS
 
 var physicsDeltaTime = 0f
