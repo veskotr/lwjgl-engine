@@ -2,18 +2,15 @@ package engine.physics
 
 
 import engine.updateEngineObjects
-import org.jbox2d.collision.shapes.PolygonShape
-import org.jbox2d.common.Vec2
-import org.jbox2d.dynamics.Body
-import org.jbox2d.dynamics.BodyDef
-import org.jbox2d.dynamics.World
+import org.dyn4j.dynamics.Body
+import org.dyn4j.world.World
+
 import org.joml.Vector2f
 
-private val world = World(Vec2(0f, -1000f))
-
+private val world = World<Body>()
 private var physicsActive = true
 
-private var physicsTPS = 120
+private var physicsTPS = 60
 private var physicsTimeStep = 1f / physicsTPS
 
 var physicsDeltaTime = 0f
@@ -26,11 +23,11 @@ private var running = true
 private lateinit var thread: Thread
 
 fun setWorldGravity(gravity: Vector2f) {
-    world.gravity = Vec2(gravity.x, gravity.y)
+    world.gravity.set(gravity.x.toDouble(), gravity.y.toDouble())
 }
 
-fun createPhysicsBody(bodyDef: BodyDef): Body {
-    return world.createBody(bodyDef)
+fun addPhysicsBody(body: Body) {
+    world.addBody(body)
 }
 
 fun startPhysicsLoop() {
@@ -39,7 +36,7 @@ fun startPhysicsLoop() {
             if (elapsedTime >= physicsTimeStep) {
                 updatePhysics()
                 timePassed += physicsTimeStep
-                physicsDeltaTime = physicsTimeStep
+                physicsDeltaTime = elapsedTime
                 elapsedTime = 0f
                 tps++
             }
@@ -55,17 +52,10 @@ fun startPhysicsLoop() {
     thread.start()
 }
 
-fun createSquareShape(width: Float, height: Float): PolygonShape {
-    val shape = PolygonShape()
-    shape.setAsBox(width, height)
-    return shape
-}
-
 fun updatePhysics() {
     if (physicsActive) {
-        world.step(physicsTimeStep, 8, 3)
+        world.update(physicsDeltaTime.toDouble())
         updateEngineObjects()
-        //println(elapsedTime)
     }
 }
 

@@ -47,6 +47,7 @@ dependencies {
     implementation 'commons-io:commons-io:2.16.1'
 
     implementation name: 'jbox2d-library-2.2.1.1'
+    implementation 'org.dyn4j:dyn4j:5.0.2'
 
     implementation "org.lwjgl:lwjgl"
     implementation "org.lwjgl:lwjgl-assimp"

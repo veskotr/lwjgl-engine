@@ -1,44 +1,32 @@
 package engine.physics
 
+import engine.geometry.toVector2
+import engine.geometry.toVector2f
 import engine.structure.EngineComponent
-import org.jbox2d.collision.shapes.Shape
-import org.jbox2d.common.Vec2
-import org.jbox2d.dynamics.Body
-import org.jbox2d.dynamics.BodyDef
-import org.jbox2d.dynamics.BodyType
-import org.jbox2d.dynamics.Fixture
-import org.jbox2d.dynamics.FixtureDef
-import org.joml.Vector2f
+import org.dyn4j.dynamics.Body
+import org.dyn4j.geometry.Convex
+import org.dyn4j.geometry.Mass
+import org.dyn4j.geometry.MassType
 
 class RigidBody(
-    val density: Float = 1.0f,
-    val friction: Float = 1.0f,
-    val bodyType: BodyType = BodyType.DYNAMIC,
-    val shape: Shape
+    val fixture: Convex,
+    val static: Boolean = false
 ) : EngineComponent() {
-    private lateinit var body: Body
-    private lateinit var fixture: Fixture
-
-    init {
-
-    }
+    private val body: Body = Body()
 
     override fun start() {
-        val bodyDef = BodyDef()
-        bodyDef.type = bodyType
-        bodyDef.position.set(parentObject!!.transform.position.x, parentObject!!.transform.position.y)
-        body = createPhysicsBody(bodyDef)
-
-        val fixtureDef = FixtureDef()
-        fixtureDef.density = density
-        fixtureDef.friction = friction
-        fixtureDef.shape = shape
-
-        fixture = body.createFixture(fixtureDef)
+        body.addFixture(fixture)
+        body.transform.rotation.rotate(parentObject!!.transform.rotation.toDouble())
+        body.transform.translation = parentObject!!.transform.position.toVector2()
+        body.setMass(MassType.NORMAL)
+        if (static) {
+            body.setMass(MassType.INFINITE)
+        }
+        addPhysicsBody(body)
     }
 
     override fun update() {
-        parentObject!!.transform.position = Vector2f(body.position.x, body.position.y)
-        parentObject!!.transform.rotation = body.angle
+        parentObject!!.transform.rotation = body.transform.rotation.toDegrees().toFloat()
+        parentObject!!.transform.position = body.transform.translation.toVector2f()
     }
 }
