@@ -1,7 +1,6 @@
 package engine.physics
 
 
-import engine.structure.EngineComponent
 import engine.updateEngineObjects
 import org.jbox2d.callbacks.ContactImpulse
 import org.jbox2d.callbacks.ContactListener
@@ -16,7 +15,7 @@ import org.joml.Vector2f
 
 private val world = World(Vec2(0f, -9.81f))
 
-private var physicsActive = true
+private var physicsActive = false
 
 private var physicsTPS = 60
 private var physicsTimeStep = 1f / physicsTPS
@@ -30,8 +29,8 @@ private var running = true
 
 private lateinit var thread: Thread
 
-const val SCALE_FACTOR = 0.01f
-const val INVERSE_SCALE_FACTOR = 100f
+const val SCALE_FACTOR = 0.02f
+const val INVERSE_SCALE_FACTOR = 1 / SCALE_FACTOR
 
 fun setWorldGravity(gravity: Vector2f) {
     world.gravity = Vec2(gravity.x, gravity.y)
@@ -41,7 +40,13 @@ fun createPhysicsBody(bodyDef: BodyDef): Body {
     return world.createBody(bodyDef)
 }
 
-fun startPhysicsLoop() {
+fun startPhysics() {
+    startCollisionListener()
+    initPhysicsThread()
+    physicsActive = true
+}
+
+private fun startCollisionListener() {
     world.setContactListener(object : ContactListener {
         override fun beginContact(contact: Contact) {
             val bodyA = contact.fixtureA.body.userData as Collider
@@ -63,6 +68,9 @@ fun startPhysicsLoop() {
         override fun postSolve(contact: Contact, impulse: ContactImpulse) {
         }
     })
+}
+
+private fun initPhysicsThread() {
     thread = Thread {
         while (running) {
             if (elapsedTime >= physicsTimeStep) {
@@ -94,7 +102,6 @@ fun updatePhysics() {
     if (physicsActive) {
         world.step(physicsTimeStep, 8, 3)
         updateEngineObjects()
-        //println(elapsedTime)
     }
 }
 
@@ -114,5 +121,4 @@ fun getPhysicsTPS(): Int {
 fun stopPhysicsLoop() {
     running = false
 }
-
 

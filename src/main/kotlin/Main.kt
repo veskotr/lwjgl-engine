@@ -1,6 +1,5 @@
 import engine.initGame
-import engine.physics.RigidBody
-import engine.physics.createSquareShape
+import engine.physics.BoxCollider
 import engine.runGame
 import engine.startGame
 import engine.structure.EngineObject
@@ -28,10 +27,7 @@ fun main() {
     ground.transform.rotation = 50f
     ground.renderer = SpriteRenderer(sprite = sprite)
     ground.addComponent(
-        RigidBody(
-            shape = createSquareShape(428f, 32f),
-            bodyType = BodyType.KINEMATIC
-        )
+        BoxCollider(size = Vector2f(428f, 32f), bodyType = BodyType.STATIC, isSensor = false)
     )
 
 
@@ -40,8 +36,9 @@ fun main() {
     movableObject.transform.position = Vector2f(-426 + (64 + 2f), 0f)
     movableObject.renderer = SpriteRenderer(sprite = sprite)
     movableObject.addComponent(
-        RigidBody(shape = createSquareShape(32.0f, 32.0f), bodyType = BodyType.DYNAMIC)
+        BoxCollider(size = Vector2f(32f, 32f), bodyType = BodyType.DYNAMIC, isSensor = false)
     )
+    movableObject.addComponent(SampleComponent())
 
     startGame()
 

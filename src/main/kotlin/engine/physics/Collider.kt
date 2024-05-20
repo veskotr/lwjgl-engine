@@ -1,6 +1,7 @@
 package engine.physics
 
 import engine.geometry.toVec2
+import engine.geometry.toVector2f
 import engine.structure.EngineComponent
 import org.jbox2d.collision.shapes.Shape
 import org.jbox2d.dynamics.Body
@@ -8,38 +9,84 @@ import org.jbox2d.dynamics.BodyDef
 import org.jbox2d.dynamics.BodyType
 import org.jbox2d.dynamics.Fixture
 import org.jbox2d.dynamics.FixtureDef
+import org.joml.Vector2f
 
-class Collider(
-    val shape: Shape
+abstract class Collider(
+    offsetPosition: Vector2f = Vector2f(),
+    isSensor: Boolean = true,
+    bodyType: BodyType = BodyType.STATIC,
+    density: Float = 1.0f,
+    friction: Float = 0.3f,
 ) : EngineComponent() {
 
-    private lateinit var body: Body
-    private lateinit var fixture: Fixture
+    protected lateinit var body: Body
+    protected lateinit var fixture: Fixture
+
+    var offsetPosition = offsetPosition
+        set(value) {
+            field = value
+            body.setTransform(
+                (getPosition().add(value, Vector2f())).mul(SCALE_FACTOR).toVec2(),
+                getRotation()
+            )
+        }
+        get() {
+            return field.mul(SCALE_FACTOR, Vector2f())
+        }
+
+    var isSensor = isSensor
+        set(value) {
+            field = value
+            fixture.isSensor = value
+        }
+
+    var bodyType = bodyType
+        set(value) {
+            field = value
+            body.type = value
+        }
+
+    var density = density
+        set(value) {
+            field = value
+            fixture.density = value
+        }
+
+    var friction = friction
+        set(value) {
+            field = value
+            fixture.friction = value
+        }
+
+    abstract fun createShape(): Shape
+
 
     override fun start() {
         val bodyDef = BodyDef()
         bodyDef.userData = this
-        bodyDef.type = BodyType.KINEMATIC
-        bodyDef.position.set(parentObject!!.transform.position.mul(SCALE_FACTOR).toVec2())
-        bodyDef.angle = parentObject!!.transform.rotation
+        bodyDef.type = bodyType
+        bodyDef.position.set(getPosition().mul(SCALE_FACTOR, Vector2f()).toVec2())
+        bodyDef.angle = getRotation()
         body = createPhysicsBody(bodyDef)
 
         val fixtureDef = FixtureDef()
-        fixtureDef.shape = shape
-        fixtureDef.isSensor = true
+        fixtureDef.shape = createShape()
+        fixtureDef.isSensor = isSensor
+        fixtureDef.density = density
+        fixtureDef.friction = friction
         fixture = body.createFixture(fixtureDef)
     }
 
     override fun update() {
-        TODO("Not yet implemented")
+        setPosition(body.position.toVector2f().mul(INVERSE_SCALE_FACTOR))
+        setRotation(body.angle)
     }
 
     fun onCollisionEnter(other: Collider) {
-        println("Collision Enter")
+        parentObject.getCollisionListeners().forEach { it.onCollisionEnter(other) }
     }
 
     fun onCollisionExit(other: Collider) {
-        println("Collision Exit")
+        parentObject.getCollisionListeners().forEach { it.onCollisionExit(other) }
     }
-
 }

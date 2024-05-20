@@ -1,6 +1,6 @@
 package engine
 
-import engine.physics.startPhysicsLoop
+import engine.physics.startPhysics
 import engine.physics.stopPhysicsLoop
 import graphics.rendering.initRendering
 import graphics.rendering.render
@@ -28,7 +28,7 @@ fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScree
 
 fun startGame() {
     startEngineObjects()
-    startPhysicsLoop()
+    startPhysics()
 }
 
 fun runGame() {

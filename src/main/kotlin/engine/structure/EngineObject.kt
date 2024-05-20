@@ -2,9 +2,9 @@ package engine.structure
 
 import engine.addEngineObject
 import engine.geometry.Transform
+import engine.physics.ICollisionListener
 import engine.removeEngineObject
 import graphics.rendering.Renderer
-import org.joml.Quaternionf
 import org.joml.Vector2f
 
 class EngineObject : IEngineObject {
@@ -64,6 +64,26 @@ class EngineObject : IEngineObject {
         return if (id > children.size) {
             null
         } else children.elementAt(id)
+    }
+
+    fun getPosition(): Vector2f {
+        return transform.position
+    }
+
+    fun setPosition(position: Vector2f) {
+        transform.position = position
+    }
+
+    fun getRotation(): Float {
+        return transform.rotation
+    }
+
+    fun setRotation(rotation: Float) {
+        transform.rotation = rotation
+    }
+
+    fun getCollisionListeners(): Set<ICollisionListener> {
+        return components.filterIsInstance<ICollisionListener>().toSet()
     }
 
 }
