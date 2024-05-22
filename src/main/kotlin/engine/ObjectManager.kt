@@ -1,6 +1,6 @@
 package engine
 
-import engine.structure.EngineObject
+import structure.EngineObject
 
 private var engineObjects: MutableList<EngineObject> = mutableListOf()
 

@@ -1,6 +1,6 @@
-import engine.physics.Collider
-import engine.physics.ICollisionListener
-import engine.structure.EngineComponent
+import physics.Collider
+import physics.ICollisionListener
+import structure.EngineComponent
 
 class SampleComponent : EngineComponent(), ICollisionListener {
 

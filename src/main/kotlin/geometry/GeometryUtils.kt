@@ -1,4 +1,4 @@
-package engine.geometry
+package geometry
 
 import org.jbox2d.common.Vec2
 import org.joml.Vector2f

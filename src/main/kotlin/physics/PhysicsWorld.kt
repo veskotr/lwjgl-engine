@@ -1,7 +1,6 @@
-package engine.physics
+package physics
 
 
-import engine.updateEngineObjects
 import org.jbox2d.callbacks.ContactImpulse
 import org.jbox2d.callbacks.ContactListener
 import org.jbox2d.collision.Manifold
@@ -11,6 +10,8 @@ import org.jbox2d.dynamics.Body
 import org.jbox2d.dynamics.BodyDef
 import org.jbox2d.dynamics.World
 import org.jbox2d.dynamics.contacts.Contact
+import org.jbox2d.dynamics.joints.Joint
+import org.jbox2d.dynamics.joints.JointDef
 import org.joml.Vector2f
 
 private val world = World(Vec2(0f, -9.81f))
@@ -38,6 +39,10 @@ fun setWorldGravity(gravity: Vector2f) {
 
 fun createPhysicsBody(bodyDef: BodyDef): Body {
     return world.createBody(bodyDef)
+}
+
+fun createPhysicsJoint(jointDef: JointDef): Joint {
+    return world.createJoint(jointDef)
 }
 
 fun startPhysics() {
@@ -101,7 +106,6 @@ fun createSquareShape(width: Float, height: Float): PolygonShape {
 fun updatePhysics() {
     if (physicsActive) {
         world.step(physicsTimeStep, 8, 3)
-        updateEngineObjects()
     }
 }
 

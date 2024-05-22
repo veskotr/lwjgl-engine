@@ -1,4 +1,4 @@
-package engine.structure
+package structure
 
 import org.joml.Vector2f
 

@@ -1,8 +1,8 @@
-package engine.physics
+package physics
 
-import engine.geometry.toVec2
-import engine.geometry.toVector2f
-import engine.structure.EngineComponent
+import geometry.toVec2
+import geometry.toVector2f
+import structure.EngineComponent
 import org.jbox2d.collision.shapes.Shape
 import org.jbox2d.dynamics.Body
 import org.jbox2d.dynamics.BodyDef
@@ -19,8 +19,8 @@ abstract class Collider(
     friction: Float = 0.3f,
 ) : EngineComponent() {
 
-    protected lateinit var body: Body
-    protected lateinit var fixture: Fixture
+    lateinit var body: Body
+    lateinit var fixture: Fixture
 
     var offsetPosition = offsetPosition
         set(value) {

@@ -1,4 +1,4 @@
-package engine.physics
+package physics
 
 import org.jbox2d.collision.shapes.Shape
 import org.jbox2d.dynamics.BodyType

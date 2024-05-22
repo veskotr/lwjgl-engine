@@ -1,7 +1,7 @@
 package engine
 
-import engine.physics.startPhysics
-import engine.physics.stopPhysicsLoop
+import physics.startPhysics
+import physics.stopPhysicsLoop
 import graphics.rendering.initRendering
 import graphics.rendering.render
 import graphics.utils.cleanupGraphics
@@ -35,6 +35,7 @@ fun runGame() {
     while (!windowShouldClose()) {
 
         clearWindow()
+        updateEngineObjects()
 
         render()
 

@@ -1,11 +1,12 @@
-package engine.structure
+package structure
 
 import engine.addEngineObject
-import engine.geometry.Transform
-import engine.physics.ICollisionListener
+import geometry.Transform
+import physics.ICollisionListener
 import engine.removeEngineObject
 import graphics.rendering.Renderer
 import org.joml.Vector2f
+import kotlin.reflect.KClass
 
 class EngineObject : IEngineObject {
 
@@ -84,6 +85,10 @@ class EngineObject : IEngineObject {
 
     fun getCollisionListeners(): Set<ICollisionListener> {
         return components.filterIsInstance<ICollisionListener>().toSet()
+    }
+
+    fun getComponent(kClass: KClass<out EngineComponent>): Any {
+        return components.first { kClass.isInstance(it) }
     }
 
 }

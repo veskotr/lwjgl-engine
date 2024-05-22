@@ -1,9 +1,11 @@
 package graphics.rendering
 
 import graphics.shaders.createBasicShader
+import graphics.shaders.createParticleShader
 
 
 val defaultShader = createBasicShader()
+val particleShader = createParticleShader()
 
 
 private var renderers = mutableListOf<Renderer>()

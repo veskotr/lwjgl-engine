@@ -7,42 +7,6 @@ import java.io.InputStream
 import java.io.InputStreamReader
 import kotlin.system.exitProcess
 
-private const val vertexCode = "#version 120\n" +
-        "\n" +
-        "attribute vec2 textures;\n" +
-        "attribute vec2 vertices;\n" +
-        "\n" +
-        "varying vec2 texCoords;\n" +
-        "\n" +
-        "uniform mat4 projection;\n" +
-        "\n" +
-        "uniform mat4 model;\n" +
-        "\n" +
-        "void main() {\n" +
-        "\n" +
-        "    texCoords = textures;\n" +
-        "\n" +
-        "    gl_Position = projection * model * vec4(vertices,0,1);\n" +
-        "}\n"
-
-private const val fragmentCode = "#version 120\n" +
-        "\n" +
-        "uniform sampler2D sampler;\n" +
-        "uniform int hasTexture;\n" +
-        "uniform vec4 color;\n" +
-        "varying vec2 texCoords;\n" +
-        "\n" +
-        "void main() {\n" +
-        "    vec4 texture;\n" +
-        "    if (hasTexture == 1){\n" +
-        "        texture = texture2D(sampler, texCoords);\n" +
-        "        //texture *= color;\n" +
-        "    }else {\n" +
-        "        texture = color;\n" +
-        "    }\n" +
-        "    gl_FragColor = texture;\n" +
-        "}"
-
 const val PROJECTION_UNIFORM = "projection"
 const val TRANSFORM_UNIFORM = "model"
 const val HAS_TEXTURE_UNIFORM = "hasTexture"
@@ -99,4 +63,8 @@ fun loadShaderCode(relativeFilePath: String): String {
 
 fun createBasicShader(): Shader {
     return createShader(loadShaderCode("/shaders/default/vertex.glsl"), loadShaderCode("/shaders/default/fragment.glsl"))
+}
+
+fun createParticleShader(): Shader {
+    return createShader(loadShaderCode("/shaders/particle/vertex.glsl"), loadShaderCode("/shaders/particle/fragment.glsl"))
 }
