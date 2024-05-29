@@ -29,6 +29,11 @@ import org.lwjgl.glfw.GLFW.glfwWindowShouldClose
 import org.lwjgl.glfw.GLFWErrorCallback
 import org.lwjgl.opengl.GL
 import org.lwjgl.opengl.GL11
+import org.lwjgl.opengl.GL11.GL_BLEND
+import org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA
+import org.lwjgl.opengl.GL11.GL_SRC_ALPHA
+import org.lwjgl.opengl.GL11.glBlendFunc
+import org.lwjgl.opengl.GL11.glEnable
 import org.lwjgl.system.MemoryStack
 import org.lwjgl.system.MemoryUtil
 
@@ -61,6 +66,8 @@ fun initWindow(width: Int, height: Int, title: String, fullScreen: Boolean, vsyn
         glfwSwapInterval(1)
     GL.createCapabilities()
     GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f)
+    glEnable(GL_BLEND)
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
 }
 
 fun windowShouldClose() = glfwWindowShouldClose(window)

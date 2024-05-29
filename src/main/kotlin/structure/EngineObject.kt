@@ -87,8 +87,8 @@ class EngineObject : IEngineObject {
         return components.filterIsInstance<ICollisionListener>().toSet()
     }
 
-    fun getComponent(kClass: KClass<out EngineComponent>): Any {
-        return components.first { kClass.isInstance(it) }
+    fun getComponent(kClass: KClass<out EngineComponent>): Any? {
+        return components.firstOrNull() { kClass.isInstance(it) }
     }
 
 }

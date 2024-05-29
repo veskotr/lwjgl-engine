@@ -2,7 +2,6 @@ package physics
 
 import geometry.toVec2
 import geometry.toVector2f
-import structure.EngineComponent
 import org.jbox2d.collision.shapes.Shape
 import org.jbox2d.dynamics.Body
 import org.jbox2d.dynamics.BodyDef
@@ -10,6 +9,7 @@ import org.jbox2d.dynamics.BodyType
 import org.jbox2d.dynamics.Fixture
 import org.jbox2d.dynamics.FixtureDef
 import org.joml.Vector2f
+import structure.EngineComponent
 
 abstract class Collider(
     offsetPosition: Vector2f = Vector2f(),
@@ -80,6 +80,10 @@ abstract class Collider(
     override fun update() {
         setPosition(body.position.toVector2f().mul(INVERSE_SCALE_FACTOR))
         setRotation(body.angle)
+    }
+
+    fun setPhysicsLinearVelocity(velocity: Vector2f) {
+        body.linearVelocity = velocity.mul(SCALE_FACTOR).toVec2()
     }
 
     fun onCollisionEnter(other: Collider) {

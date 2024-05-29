@@ -33,11 +33,21 @@ fun main() {
     val movableObject = EngineObject()
     movableObject.transform.scale = (Vector2f(32f, 32f))
     movableObject.transform.position = Vector2f(0f)
-    //movableObject.renderer = SpriteRenderer(sprite = sprite)
     movableObject.addComponent(
         BoxCollider(size = Vector2f(32f, 32f), bodyType = BodyType.DYNAMIC, isSensor = false)
     )
-    movableObject.addComponent(ParticleEmitter(sprite = sprite, velocity = Vector2f(100f, 0f), maxEnergy = 240))
+    movableObject.addComponent(
+        ParticleEmitter(
+            sprite = sprite,
+            maxEnergy = 500,
+            maxSize = 10f,
+            minSize = 5f,
+            minEmission = 10,
+            maxEmission = 20
+        )
+    )
+    movableObject.renderer = SpriteRenderer(sprite = sprite)
+    movableObject.addComponent(SampleComponent())
 
     startGame()
 

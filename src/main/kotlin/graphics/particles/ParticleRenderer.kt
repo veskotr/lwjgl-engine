@@ -13,6 +13,10 @@ class ParticleRenderer(private val particleEmitter: ParticleEmitter) :
 
     private val squareModel = SquareModel()
 
+    companion object{
+        const val ALPHA_UNIFORM = "alpha"
+    }
+
     override fun render() {
         shader.bind()
         shader.setUniform(PROJECTION_UNIFORM, getCameraProjectionMatrix())
@@ -20,6 +24,7 @@ class ParticleRenderer(private val particleEmitter: ParticleEmitter) :
         particleEmitter.sprite.bindTexture(0)
         particleEmitter.particles.forEach {
             shader.setUniform(TRANSFORM_UNIFORM, it.matrix)
+            shader.setUniform(ALPHA_UNIFORM, 1f - it.aliveTime.toFloat() / it.life.toFloat())
             squareModel.render()
         }
     }

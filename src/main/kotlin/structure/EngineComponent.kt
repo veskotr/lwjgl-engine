@@ -1,6 +1,7 @@
 package structure
 
 import org.joml.Vector2f
+import physics.Collider
 
 abstract class EngineComponent : IEngineObject {
     var active = false
@@ -29,5 +30,14 @@ abstract class EngineComponent : IEngineObject {
 
     fun setScale(scale: Vector2f) {
         parentObject.transform.scale = scale
+    }
+
+    fun setLinearVelocity(velocity: Vector2f) {
+        val collider: Collider? = parentObject.getComponent(Collider::class) as Collider?
+        if (collider != null) {
+            collider.setPhysicsLinearVelocity(velocity)
+        } else {
+            getPosition().add(velocity)
+        }
     }
 }
