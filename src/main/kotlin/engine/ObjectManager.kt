@@ -1,10 +1,10 @@
 package engine
 
-import structure.EngineObject
+import structure.IEngineObject
 
-private var engineObjects: MutableList<EngineObject> = mutableListOf()
+private var engineObjects: MutableList<IEngineObject> = mutableListOf()
 
-fun addEngineObject(engineObject: EngineObject) {
+fun addEngineObject(engineObject: IEngineObject) {
     engineObjects.add(engineObject)
 }
 
@@ -16,6 +16,6 @@ fun updateEngineObjects() {
     engineObjects.forEach { it.update()  }
 }
 
-fun removeEngineObject(engineObject: EngineObject) {
+fun removeEngineObject(engineObject: IEngineObject) {
     engineObjects.remove(engineObject)
 }
