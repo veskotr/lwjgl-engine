@@ -1,4 +1,4 @@
 package tiledmap
 
-class MapLayer(private val chunks: List<MapChunk>) {
+class MapLayer(private val chunks: Array<Array<MapChunk>>) {
 }

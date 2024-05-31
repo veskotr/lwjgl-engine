@@ -1,6 +1,6 @@
 package graphics.rendering
 
-abstract class Model() {
+abstract class Model {
     protected var vId: Int = 0
     protected var tId: Int = 0
     protected var iId: Int = 0
