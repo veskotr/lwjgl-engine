@@ -51,15 +51,6 @@ fun initWindow(width: Int, height: Int, title: String, fullScreen: Boolean, vsyn
     glfwSetKeyCallback(window) { window, key, _, action, _ ->
         if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE) glfwSetWindowShouldClose(window, true)
     }
-    MemoryStack.stackPush().use { stack ->
-        val pWidth = stack.mallocInt(1)
-        val pHeight = stack.mallocInt(1)
-        glfwGetWindowSize(window, pWidth, pHeight)
-        val vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor())
-        if (!fullScreen) {
-            glfwSetWindowPos(window, (vidmode!!.width() - pWidth[0]) / 2, (vidmode.height() - pHeight[0]) / 2)
-        }
-    }
     glfwMakeContextCurrent(window)
     glfwShowWindow(window)
     if (vsyncEnabled)

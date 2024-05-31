@@ -14,8 +14,8 @@ class SquareModel : Model {
 
     companion object {
         private val vertices = floatArrayOf(
-            -1f,  1f,  // top left corner
-            1f,  1f,  // top right corner
+            -1f, 1f,  // top left corner
+            1f, 1f,  // top right corner
             -1f, -1f,  // bottom left corner
             1f, -1f   // bottom right corner
         )
@@ -46,20 +46,24 @@ class SquareModel : Model {
         iId = createVbo(indices)
     }
 
-    override fun bindModel() {
+    override fun bindVertexBuffer(vId: Int) {
         glEnableVertexAttribArray(0)
         glEnableVertexAttribArray(1)
         glBindBuffer(GL_ARRAY_BUFFER, vId)
         glVertexAttribPointer(0, 2, GL_FLOAT, false, 0, 0)
+    }
+
+    override fun bindTextureBuffer(tId: Int) {
         glBindBuffer(GL_ARRAY_BUFFER, tId)
         glVertexAttribPointer(1, 2, GL_FLOAT, false, 0, 0)
+    }
+
+    override fun bindIndexBuffer() {
         glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, iId)
     }
 
-    override fun render() {
-        bindModel()
+    override fun drawModel() {
         glDrawElements(GL_TRIANGLES, count, GL_UNSIGNED_INT, 0)
-        unbindModel()
     }
 
     override fun unbindModel() {

@@ -47,7 +47,10 @@ fun main() {
         )
     )
     movableObject.renderer = SpriteRenderer(sprite = sprite)
-    movableObject.addComponent(SampleComponent())
+   // movableObject.addComponent(SampleComponent())
+
+    val engineObject = EngineObject()
+    engineObject.addComponent(SampleComponent())
 
     startGame()
 

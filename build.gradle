@@ -12,6 +12,18 @@ version = '0.1'
 project.ext.lwjglVersion = "3.3.3"
 project.ext.jomlVersion = "1.10.5"
 
+mainClassName = "MainKt"
+
+jar {
+    manifest {
+        attributes 'Main-Class': mainClassName
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    }
+    from {
+        configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
 switch (OperatingSystem.current()) {
     case OperatingSystem.LINUX:
         project.ext.lwjglNatives = "natives-linux"

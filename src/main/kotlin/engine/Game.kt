@@ -5,25 +5,19 @@ import physics.stopPhysicsLoop
 import graphics.rendering.initRendering
 import graphics.rendering.render
 import graphics.utils.cleanupGraphics
-import io.clearWindow
-import io.destroyWindow
-import io.initCamera
-import io.initInput
-import io.initWindow
-import io.pollEvents
-import io.updateInput
-import io.windowShouldClose
+import io.*
 
 private var timePassed = 0.0
 private var frames = 0
 var deltaTime = 0.01f
 private var lastTime = 0L
+lateinit var camera: Camera
 
 fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScreen: Boolean, vsyncEnabled: Boolean) {
     initWindow(windowWidth, windowHeight, windowTitle, fullScreen, vsyncEnabled)
     initInput()
     initRendering()
-    initCamera(windowWidth, windowHeight)
+    camera = Camera.getInstance(windowWidth, windowHeight)
 }
 
 fun startGame() {

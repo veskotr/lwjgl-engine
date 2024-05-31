@@ -1,6 +1,14 @@
 package tiledmap
 
-class TiledMap(private val tileSets: List<TileSet>, private val layers: List<MapLayer>) {
+import structure.IEngineObject
 
+class TiledMap(val layers: List<MapLayer>): IEngineObject {
 
+    override fun start() {
+        TODO("Not yet implemented")
+    }
+
+    override fun update() {
+        TODO("Not yet implemented")
+    }
 }

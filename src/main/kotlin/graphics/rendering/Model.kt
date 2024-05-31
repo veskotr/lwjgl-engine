@@ -6,7 +6,19 @@ abstract class Model {
     protected var iId: Int = 0
     protected var count: Int = 0
 
-    abstract fun bindModel()
-    abstract fun render()
+    fun bindModel(){
+        bindVertexBuffer()
+        bindTextureBuffer()
+        bindIndexBuffer()
+    }
+    abstract fun bindVertexBuffer(vId: Int = this.vId)
+    abstract fun bindTextureBuffer(tId: Int = this.tId)
+    abstract fun bindIndexBuffer()
+    abstract fun drawModel()
+    fun render(){
+        bindModel()
+        drawModel()
+        unbindModel()
+    }
     abstract fun unbindModel()
 }

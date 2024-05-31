@@ -4,33 +4,29 @@ import org.joml.Matrix4f
 import org.joml.Vector2f
 import org.joml.Vector3f
 
-private var projection: Matrix4f? = null
+class Camera private constructor(val width: Int, val height: Int) {
 
-private var cameraPosition: Vector2f? = null
-private var cameraScale: Vector2f? = null
+    companion object {
+        private var instance: Camera? = null
 
-fun initCamera(width: Int, height: Int) {
-    cameraPosition = Vector2f(0f)
-    projection = Matrix4f().ortho2D(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f)
-    cameraScale = Vector2f(1f)
-}
+        fun getInstance(width: Int, height: Int): Camera {
+            if (instance == null) {
+                instance = Camera(width, height)
+            }
+            return instance!!
+        }
+    }
 
-fun getCameraPositionInWorldSpace(): Vector2f {
-    return cameraPosition!!
-}
+    var projection: Matrix4f = Matrix4f()
+        get() {
+            return field.scale(Vector3f(scale, 0f)).translate(Vector3f(position, 0f), Matrix4f())
+        }
 
-fun setCameraPositionInWorldSpace(position: Vector2f) {
-    cameraPosition = position
-}
+    var position: Vector2f = Vector2f(0f)
 
-fun getCameraProjectionMatrix(): Matrix4f {
-    return projection!!.scale(Vector3f(cameraScale, 0f)).translate(Vector3f(cameraPosition, 0f), Matrix4f())
-}
+    var scale: Vector2f = Vector2f(1f)
 
-fun setCameraScale(scale: Vector2f) {
-    cameraScale = scale
-}
-
-fun getCameraScale(): Vector2f {
-    return cameraScale!!
+    init {
+        projection = Matrix4f().ortho2D(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f)
+    }
 }
