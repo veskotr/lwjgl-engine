@@ -1,4 +1,4 @@
-package tiledmap
+package tiledmap.tilesets
 
 import graphics.Texture
 import org.joml.Vector2f
@@ -11,7 +11,6 @@ class TileSet(
     val tileCount: Int
 ) {
     fun createTile(tileId: Int, position: Vector2f, scale: Vector2f): TexturedTile {
-        println(tileId)
         return TexturedTile(position, scale, bufferIds[tileId]!!, textureAtlas)
     }
 }

@@ -16,7 +16,7 @@ class EngineObject : IEngineObject {
 
     private val children: MutableSet<EngineObject> = mutableSetOf()
 
-    var renderer: Renderer? = null
+    var renderer: Renderer<EngineObject>? = null
         set(value) {
             field = value
             field!!.parentObject = this
@@ -45,6 +45,7 @@ class EngineObject : IEngineObject {
     }
 
     override fun update() {
+        if (!active) return
         components.forEach(IEngineObject::update)
         children.forEach(IEngineObject::update)
     }

@@ -30,7 +30,7 @@ private var running = true
 
 private lateinit var thread: Thread
 
-const val SCALE_FACTOR = 0.02f
+const val SCALE_FACTOR = 0.03f
 const val INVERSE_SCALE_FACTOR = 1 / SCALE_FACTOR
 
 fun setWorldGravity(gravity: Vector2f) {
