@@ -8,6 +8,8 @@ class TiledMap(val layers: List<MapLayer>): IEngineObject {
 
     val renderer = TiledMapRenderer(this)
 
+    val children = mutableListOf<IEngineObject>()
+
     var active: Boolean = false
         set(value) {
             field = value
