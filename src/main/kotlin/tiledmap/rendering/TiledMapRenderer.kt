@@ -9,6 +9,7 @@ import graphics.shaders.PROJECTION_UNIFORM
 import graphics.shaders.SAMPLER_UNIFORM
 import graphics.shaders.TRANSFORM_UNIFORM
 import tiledmap.TiledMap
+import tiledmap.layers.TiledLayer
 import tiledmap.tiles.TexturedTile
 import tiledmap.tiles.Tile
 
@@ -22,18 +23,21 @@ class TiledMapRenderer(tiledMap: TiledMap) : Renderer<TiledMap>(parentObject = t
         bindShaderAndSetUniforms()
         bindModelBuffers()
         parentObject!!.layers.forEach { layer ->
-            layer.chunks.forEach { chunk ->
-                run {
-                    if (camera.isChunkVisible(chunk)) {
-                        chunk.tiles.forEach { row ->
-                            row.forEach { tile ->
-                                run {
-                                    renderTile(tile)
+            run {
+                if (layer is TiledLayer)
+                    layer.chunks.forEach { chunk ->
+                        run {
+                            if (camera.isChunkVisible(chunk)) {
+                                chunk.tiles.forEach { row ->
+                                    row.forEach { tile ->
+                                        run {
+                                            renderTile(tile)
+                                        }
+                                    }
                                 }
                             }
                         }
                     }
-                }
             }
         }
     }

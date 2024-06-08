@@ -3,7 +3,13 @@ package graphics.rendering
 import graphics.utils.createVbo
 import org.lwjgl.opengl.GL11.glDrawElements
 import org.lwjgl.opengl.GL15.glBindBuffer
-import org.lwjgl.opengl.GL20.*
+import org.lwjgl.opengl.GL20.GL_ARRAY_BUFFER
+import org.lwjgl.opengl.GL20.GL_ELEMENT_ARRAY_BUFFER
+import org.lwjgl.opengl.GL20.GL_FLOAT
+import org.lwjgl.opengl.GL20.GL_TRIANGLES
+import org.lwjgl.opengl.GL20.GL_UNSIGNED_INT
+import org.lwjgl.opengl.GL20.glEnableVertexAttribArray
+import org.lwjgl.opengl.GL20.glVertexAttribPointer
 
 
 /**
@@ -37,6 +43,17 @@ class SquareModel : Model {
 
     constructor(textures: FloatArray) {
         fillBuffers(textures)
+    }
+
+    constructor(textureBufferId: Int) {
+        tId = textureBufferId
+        fillVertexBuffer()
+    }
+
+    private fun fillVertexBuffer() {
+        count = indices.size
+        vId = createVbo(vertices)
+        iId = createVbo(indices)
     }
 
     private fun fillBuffers(texCoords: FloatArray) {
