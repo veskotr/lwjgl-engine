@@ -23,7 +23,7 @@ fun createTiledMapFromFile(path: String): TiledMap {
             mapElement.getAttribute(TILE_HEIGHT).toFloat() / 2.0f
         )
     val tileSets = extractTileSets(mapElement, path)
-    val layers = extractLayers(mapElement, tileSets, tileScale)
+    var layers = extractLayers(mapElement, tileSets, tileScale)
 
     return TiledMap(layers)
 }

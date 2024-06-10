@@ -1,14 +1,15 @@
 package structure
 
 import engine.addEngineObject
-import geometry.Transform
-import physics.ICollisionListener
 import engine.removeEngineObject
+import geometry.Transform
 import graphics.rendering.Renderer
 import org.joml.Vector2f
+import physics.ICollisionListener
+import tiledmap.layers.MapLayer
 import kotlin.reflect.KClass
 
-class EngineObject : IEngineObject {
+class EngineObject(var mapLayer: MapLayer? = null, val id: Int? = null) : IEngineObject {
 
     val transform: Transform = Transform(this)
 
@@ -62,10 +63,24 @@ class EngineObject : IEngineObject {
         children.add(engineObject)
     }
 
+    fun createChild(): EngineObject {
+        val child = EngineObject(mapLayer)
+        addChild(child)
+        return child
+    }
+
     fun getChild(id: Int): EngineObject? {
         return if (id > children.size) {
             null
         } else children.elementAt(id)
+    }
+
+    fun setScale(scale: Vector2f) {
+        transform.scale = scale
+    }
+
+    fun getScale(): Vector2f {
+        return transform.scale
     }
 
     fun getPosition(): Vector2f {

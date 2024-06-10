@@ -9,8 +9,8 @@ import tiledmap.tilesets.TileSet
 
 private const val WIDTH = "width"
 private const val HEIGHT = "height"
-private const val X = "x"
-private const val Y = "y"
+const val X = "x"
+const val Y = "y"
 
 
 fun extractChunk(chunkElement: Element, tileSets: List<TileSet>, tileScale: Vector2f): MapChunk {

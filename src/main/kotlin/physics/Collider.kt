@@ -83,7 +83,7 @@ abstract class Collider(
     }
 
     fun setPhysicsLinearVelocity(velocity: Vector2f) {
-        body.linearVelocity = velocity.mul(SCALE_FACTOR).toVec2()
+        body.linearVelocity = velocity.toVec2()
     }
 
     fun onCollisionEnter(other: Collider) {

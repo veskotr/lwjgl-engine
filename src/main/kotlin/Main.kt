@@ -8,6 +8,7 @@ import graphics.rendering.sprite.createSprite
 import org.jbox2d.dynamics.BodyType
 import org.joml.Vector2f
 import physics.BoxCollider
+import physics.setWorldGravity
 import structure.EngineObject
 import tiledmap.createTiledMapFromFile
 
@@ -21,8 +22,11 @@ fun main() {
         vsyncEnabled = false
     )
 
+    setWorldGravity(Vector2f(0f, 0f))
+
     val map = createTiledMapFromFile("/levels/testScene")
 
+    map.active = true
 
     val sprite = createSprite(Texture("/tile2.png"))
 
@@ -51,10 +55,7 @@ fun main() {
         )
     )
     movableObject.renderer = SpriteRenderer(sprite = sprite)
-    // movableObject.addComponent(SampleComponent())
-
-    val engineObject = EngineObject()
-    engineObject.addComponent(SampleComponent())
+    movableObject.addComponent(SampleComponent())
 
     startGame()
 
