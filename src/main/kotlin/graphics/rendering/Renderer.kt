@@ -1,9 +1,9 @@
 package graphics.rendering
 
 import graphics.shaders.Shader
-import structure.IEngineObject
+import structure.EngineObject
 
-abstract class Renderer<T: IEngineObject>(open val shader: Shader = defaultShader, var parentObject: T? = null) {
+abstract class Renderer(open val shader: Shader = defaultShader, var parentObject: EngineObject? = null) {
 
     init {
         addRenderer(this)

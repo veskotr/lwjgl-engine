@@ -9,27 +9,27 @@ abstract class EngineComponent : IEngineObject {
     lateinit var parentObject: EngineObject
 
     fun getPosition(): Vector2f {
-        return parentObject.transform.position
+        return parentObject.getPosition()
     }
 
     fun getRotation(): Float {
-        return parentObject.transform.rotation
+        return parentObject.getRotation()
     }
 
     fun getScale(): Vector2f {
-        return parentObject.transform.scale
+        return parentObject.getScale()
     }
 
     fun setPosition(position: Vector2f) {
-        parentObject.transform.position = position
+        parentObject.setPosition(position)
     }
 
     fun setRotation(rotation: Float) {
-        parentObject.transform.rotation = rotation
+        parentObject.setRotation(rotation)
     }
 
     fun setScale(scale: Vector2f) {
-        parentObject.transform.scale = scale
+        parentObject.setScale(scale)
     }
 
     fun setLinearVelocity(velocity: Vector2f) {

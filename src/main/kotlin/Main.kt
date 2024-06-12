@@ -26,8 +26,6 @@ fun main() {
 
     val map = createTiledMapFromFile("/levels/testScene")
 
-    map.active = true
-
     val sprite = createSprite(Texture("/tile2.png"))
 
     val ground = EngineObject()

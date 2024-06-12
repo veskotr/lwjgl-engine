@@ -1,6 +1,8 @@
 {
-    "activeFile": "",
+    "activeFile": "map.tmx",
     "expandedProjectPaths": [
+        "templates",
+        "."
     ],
     "fileStates": {
         "": {
@@ -8,11 +10,11 @@
             "scaleInEditor": 1
         },
         "map.tmx": {
-            "scale": 0.078857421875,
-            "selectedLayer": 0,
+            "scale": 1.2247,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 7824.247678018576,
-                "y": 5433.85758513932
+                "x": 849.5958193843392,
+                "y": 565.8528619253696
             }
         },
         "map.tmx#Grass": {
@@ -30,8 +32,10 @@
     },
     "last.objectTemplatePath": "/Users/A1CF452/Desktop/projects/lwjgl-engine/src/main/resources/levels/testScene/templates",
     "openFiles": [
+        "map.tmx"
     ],
     "project": "testProject.tiled-project",
+    "property.type": "string",
     "recentFiles": [
         "map.tmx"
     ]

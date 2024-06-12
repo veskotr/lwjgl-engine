@@ -3,7 +3,7 @@ package io
 import org.joml.Matrix4f
 import org.joml.Vector2f
 import org.joml.Vector3f
-import tiledmap.chunks.MapChunk
+import structure.EngineObject
 
 class Camera private constructor(val width: Int, val height: Int) {
 
@@ -33,13 +33,12 @@ class Camera private constructor(val width: Int, val height: Int) {
         projection = Matrix4f().ortho2D(-width / 2.0f, width / 2.0f, -height / 2.0f, height / 2.0f)
     }
 
-    fun isChunkVisible(chunk: MapChunk): Boolean {
-        val chunkSize = chunk.worldSize
-        val chunkPosition = chunk.worldPosition
+    fun isInView(engineObject: EngineObject): Boolean {
+
         val cameraPosition = position
-        return chunkPosition.x < -cameraPosition.x + size.x  &&
-                chunkPosition.x + chunkSize.x > -cameraPosition.x - size.x  &&
-                chunkPosition.y < cameraPosition.y + size.y  &&
-                chunkPosition.y + chunkSize.y > cameraPosition.y - size.y
+        return engineObject.getPosition().x < -cameraPosition.x + size.x  &&
+                engineObject.getPosition().x + engineObject.getScale().x > -cameraPosition.x - size.x  &&
+                engineObject.getPosition().y < cameraPosition.y + size.y  &&
+                engineObject.getPosition().y + engineObject.getScale().y > cameraPosition.y - size.y
     }
 }

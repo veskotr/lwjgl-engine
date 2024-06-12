@@ -1,14 +1,6 @@
 package tiledmap.layers
 
-import tiledmap.chunks.MapChunk
+import structure.EngineObject
 
-class TiledLayer(id: Int, val chunks: List<MapChunk>): MapLayer(id) {
-
-    override fun start() {
-        TODO("Not yet implemented")
-    }
-
-    override fun update() {
-        TODO("Not yet implemented")
-    }
+class TiledLayer(id: Int, val chunks: List<EngineObject>) : MapLayer(id) {
 }
