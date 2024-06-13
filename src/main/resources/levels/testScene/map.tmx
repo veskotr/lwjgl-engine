@@ -9855,13 +9855,12 @@
   <object id="4" gid="33" x="686.041" y="541.878" width="32" height="32"/>
   <object id="5" type="SpriteRenderer" gid="33" x="688.111" y="497.068" width="32" height="32">
    <properties>
-    <property name="boolProperty" type="bool" value="true"/>
-    <property name="colorProperty" type="color" value="#ffffac8f"/>
-    <property name="fileProperty" type="file" value="../../tile2.png"/>
-    <property name="floatProperty" type="float" value="0"/>
-    <property name="intProperty" type="int" value="0"/>
-    <property name="objectProperty" type="object" value="0"/>
-    <property name="stringProperty" value="Test"/>
+    <property name="boxCollider" type="class" propertytype="BoxCollider"/>
+    <property name="renderer" type="class" propertytype="SpriteRenderer">
+     <properties>
+      <property name="Sprite" type="file" value="../../tile2.png"/>
+     </properties>
+    </property>
    </properties>
   </object>
   <object id="6" gid="33" x="592.919" y="467.136" width="32" height="32"/>

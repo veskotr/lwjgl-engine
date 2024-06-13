@@ -35,7 +35,7 @@
         "map.tmx"
     ],
     "project": "testProject.tiled-project",
-    "property.type": "string",
+    "property.type": "BoxCollider",
     "recentFiles": [
         "map.tmx"
     ]
