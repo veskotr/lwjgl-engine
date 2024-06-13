@@ -26,20 +26,25 @@ private const val TEMPLATE: String = "template"
 
 private val engineObjectProcessors: MutableMap<String, EngineObjectProcessor> = mutableMapOf()
 
-fun extractObjects(objectLayerElement: Element, tileSets: List<TileSet>, path: String): List<EngineObject> {
+fun extractObjects(
+    objectLayerElement: Element,
+    tileSets: List<TileSet>,
+    path: String,
+    layerName: String
+): List<EngineObject> {
     val objectElements = objectLayerElement.getElementsByTagName(OBJECT)
     val objects = mutableListOf<EngineObject>()
     for (i in 0 until objectElements.length) {
         val objectElement = objectElements.item(i) as Element
-        objects.add(extractObject(objectElement, tileSets, path))
+        objects.add(extractObject(objectElement, tileSets, path, layerName))
     }
     return objects
 }
 
-fun extractObject(objectElement: Element, tileSets: List<TileSet>, path: String): EngineObject {
+fun extractObject(objectElement: Element, tileSets: List<TileSet>, path: String, layerName: String): EngineObject {
     val objectProperties = extractObjectProperties(objectElement, path)
 
-    val engineObject = EngineObject(id = objectProperties.id)
+    val engineObject = EngineObject(id = objectProperties.id, layerName = layerName)
     engineObject.setPosition(objectProperties.position)
     engineObject.setScale(objectProperties.size)
     engineObject.setRotation(objectProperties.rotation)
@@ -51,14 +56,13 @@ fun extractObject(objectElement: Element, tileSets: List<TileSet>, path: String)
             tileSets = tileSets,
             path = path
         )
-            ?: EngineObject(id = objectProperties.id)
+            ?: EngineObject(id = objectProperties.id, layerName = layerName)
     }
 }
 
 fun extractObjectProperties(objectElement: Element, path: String): ObjectProperties {
     val id = objectElement.getAttribute(ID).let { it.ifEmpty { "0" } }.toInt()
     val name = objectElement.getAttribute(NAME).let { it.ifEmpty { "Object$id" } }
-    println(name)
     val type = objectElement.getAttribute(TYPE).let { it.ifEmpty { "Object" } }
     val position = Vector2f(
         objectElement.getAttribute(X).let { if (it.isNotEmpty()) it.toFloat() else 0f },

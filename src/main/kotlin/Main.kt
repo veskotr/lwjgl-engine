@@ -26,35 +26,6 @@ fun main() {
 
     val map = createTiledMapFromFile("/levels/testScene")
 
-    val sprite = createSprite(Texture("/tile2.png"))
-
-    val ground = EngineObject()
-    ground.transform.scale = (Vector2f(428f, 32f))
-    ground.transform.position = (Vector2f(0f, -480f + 32))
-    ground.renderer = SpriteRenderer(sprite = sprite)
-    ground.addComponent(
-        BoxCollider(size = Vector2f(428f, 32f), bodyType = BodyType.STATIC, isSensor = false)
-    )
-
-    val movableObject = EngineObject()
-    movableObject.transform.scale = (Vector2f(16f, 16f))
-    movableObject.transform.position = Vector2f(0f)
-    movableObject.addComponent(
-        BoxCollider(size = Vector2f(16f, 16f), bodyType = BodyType.DYNAMIC, isSensor = false)
-    )
-    movableObject.addComponent(
-        ParticleEmitter(
-            sprite = sprite,
-            maxEnergy = 500,
-            maxSize = 10f,
-            minSize = 5f,
-            minEmission = 10,
-            maxEmission = 20
-        )
-    )
-    movableObject.renderer = SpriteRenderer(sprite = sprite)
-    movableObject.addComponent(SampleComponent())
-
     startGame()
 
     runGame()

@@ -13,17 +13,17 @@ class TileSet(
     val firstGrid: Int,
     private val bufferIds: Map<Int, Int>,
     val tileCount: Int,
-    private val tileTemplateProperties: Map<Int, ObjectProperties>
+    val tileTemplateProperties: Map<Int, List<ObjectProperties>>
 ) {
-    fun createTile(tileId: Int, position: Vector2f, scale: Vector2f): EngineObject {
-        val engineObject = EngineObject(id = tileId)
+    fun createTile(tileId: Int, position: Vector2f, scale: Vector2f, layerName: String): EngineObject {
+        val engineObject = EngineObject(id = tileId, layerName = layerName)
         engineObject.setPosition(position)
         engineObject.setScale(scale)
         engineObject.renderer = SpriteRenderer(
             sprite = Sprite(
                 textureAtlas,
                 SquareModel(bufferIds[tileId]!!)
-            )
+            ), layerName = layerName
         )
         return engineObject
     }

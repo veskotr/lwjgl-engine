@@ -8,7 +8,13 @@ import org.joml.Vector2f
 import physics.ICollisionListener
 import kotlin.reflect.KClass
 
-class EngineObject(val id: Int? = null, position: Vector2f = Vector2f(), scale: Vector2f = Vector2f()) : IEngineObject {
+class EngineObject(
+    val id: Int? = null,
+    position: Vector2f = Vector2f(),
+    scale: Vector2f = Vector2f(),
+    val index: Int = id ?: 0,
+    val layerName: String
+) : IEngineObject {
 
     val transform: Transform = Transform(this)
 
@@ -30,6 +36,9 @@ class EngineObject(val id: Int? = null, position: Vector2f = Vector2f(), scale: 
 
             children.forEach { it.active = value }
 
+            if (renderer != null) {
+                renderer?.setActive(value)
+            }
             field = value
         }
 
@@ -65,7 +74,7 @@ class EngineObject(val id: Int? = null, position: Vector2f = Vector2f(), scale: 
     }
 
     fun createChild(): EngineObject {
-        val child = EngineObject()
+        val child = EngineObject(layerName = layerName)
         addChild(child)
         return child
     }

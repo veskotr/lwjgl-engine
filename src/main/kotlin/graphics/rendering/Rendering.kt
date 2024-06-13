@@ -8,27 +8,51 @@ val defaultShader = createBasicShader()
 val particleShader = createParticleShader()
 
 
-private var renderers = mutableListOf<Renderer>()
+private var renderersMap = mutableMapOf<String, MutableSet<Renderer>>()
 
 fun initRendering() {
     defaultShader.bindAttributeLocation(0, "vertices")
     defaultShader.bindAttributeLocation(1, "textures")
 }
 
-fun addRenderer(renderer: Renderer) {
-    renderers.add(renderer)
+fun addRenderer(renderer: Renderer, layerName: String) {
+    renderersMap[layerName]?.add(renderer)
 }
 
-fun removeRenderer(renderer: Renderer) {
-    renderers.remove(renderer)
+fun removeRenderer(renderer: Renderer, layerName: String) {
+    renderersMap[layerName]?.remove(renderer)
+}
+
+fun addRenderLayer(layerName: String) {
+    renderersMap[layerName] = mutableSetOf()
 }
 
 fun render() {
-    renderers.forEach {
-        run {
-            if (it.parentObject?.active!!) {
-                it.render()
+    renderersMap.forEach {
+        it.value.forEach {
+            run {
+                if (it.parentObject?.active!!) {
+                    it.render()
+                }
             }
         }
+    }
+}
+
+fun sortRenderersByYAxis() {
+    renderersMap.forEach {
+        it.value.sortedBy { it.parentObject?.transform?.position?.y }
+    }
+}
+
+fun sortRenderersByXAxis() {
+    renderersMap.forEach {
+        it.value.sortedBy { it.parentObject?.transform?.position?.x }
+    }
+}
+
+fun sortRenderersByParentIndex() {
+    renderersMap.forEach {
+        it.value.sortedBy { it.parentObject?.index }
     }
 }

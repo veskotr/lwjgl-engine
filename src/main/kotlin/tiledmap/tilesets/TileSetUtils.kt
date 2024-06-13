@@ -72,21 +72,26 @@ private fun extractTileSetTextureAtlas(tileSetElement: Element, path: String): T
     return Texture("$path/$tileSetImageSrc")
 }
 
-private fun extractTileSetObjectProperties(tileSetElement: Element, path: String): Map<Int, ObjectProperties> {
+private fun extractTileSetObjectProperties(
+    tileSetElement: Element,
+    path: String
+): Map<Int, MutableList<ObjectProperties>> {
     val tileElements = tileSetElement.getElementsByTagName(TILE).let { if (it.length == 0) return emptyMap() else it }
 
-    val objectPropertiesMap = mutableMapOf<Int, ObjectProperties>()
+    val objectPropertiesMap = mutableMapOf<Int, MutableList<ObjectProperties>>()
 
     for (i in 0 until tileElements.length) {
         val tileElement = tileElements.item(i) as Element
         val tileId = tileElement.getAttribute(ID).toInt()
         val objectGroupElement = tileElement.getElementsByTagName(OBJECT_GROUP).item(0) as Element
         val objectElements = objectGroupElement.getElementsByTagName(OBJECT)
+        val objectPropertiesList = mutableListOf<ObjectProperties>()
         for (j in 0 until objectElements.length) {
             val objectElement = objectElements.item(j) as Element
             val objectProperties = extractObjectProperties(objectElement, path)
-            objectPropertiesMap[tileId] = objectProperties
+            objectPropertiesList.add(objectProperties)
         }
+        objectPropertiesMap[tileId] = objectPropertiesList
     }
 
     return objectPropertiesMap

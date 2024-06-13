@@ -4,6 +4,7 @@ import physics.startPhysics
 import physics.stopPhysicsLoop
 import graphics.rendering.initRendering
 import graphics.rendering.render
+import graphics.rendering.sortRenderersByYAxis
 import graphics.utils.cleanupGraphics
 import io.*
 
@@ -30,6 +31,8 @@ fun runGame() {
 
         clearWindow()
         updateEngineObjects()
+
+        sortRenderersByYAxis()
 
         render()
 

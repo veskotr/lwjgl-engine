@@ -9,7 +9,7 @@ import graphics.shaders.SAMPLER_UNIFORM
 import graphics.shaders.TRANSFORM_UNIFORM
 
 class ParticleRenderer(private val particleEmitter: ParticleEmitter) :
-    Renderer(particleShader, particleEmitter.parentObject) {
+    Renderer(particleShader, particleEmitter.parentObject, layerName = particleEmitter.parentObject.layerName) {
 
     private val squareModel = SquareModel()
 
