@@ -7,6 +7,7 @@ import java.io.FileInputStream
 import java.nio.ByteBuffer
 
 fun loadResource(filename: String): ByteBuffer {
+    println(filename)
     val bytes: ByteArray = IOUtils.toByteArray(object {}.javaClass.getResourceAsStream(filename))
     val byteBuffer = BufferUtils.createByteBuffer(bytes.size)
     byteBuffer.put(bytes)

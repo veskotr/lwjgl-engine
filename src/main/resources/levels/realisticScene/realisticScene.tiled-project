@@ -13,7 +13,7 @@
         {
             "color": "#ffa0a0a4",
             "drawFill": true,
-            "id": 2,
+            "id": 1,
             "members": [
                 {
                     "name": "offsetPosition",
@@ -47,7 +47,7 @@
         {
             "color": "#ffa0a0a4",
             "drawFill": true,
-            "id": 4,
+            "id": 2,
             "members": [
             ],
             "name": "SampleComponent",
@@ -67,7 +67,7 @@
         {
             "color": "#ffa0a0a4",
             "drawFill": true,
-            "id": 1,
+            "id": 3,
             "members": [
                 {
                     "name": "sprite",
@@ -86,7 +86,7 @@
         {
             "color": "#ffa0a0a4",
             "drawFill": true,
-            "id": 3,
+            "id": 4,
             "members": [
                 {
                     "name": "x",

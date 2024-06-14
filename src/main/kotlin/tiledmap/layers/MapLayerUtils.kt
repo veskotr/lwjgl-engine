@@ -25,7 +25,7 @@ fun extractLayers(
     val objectLayers = extractObjectLayers(mapElement, tileSets, path)
     val sortedLayers = (tiledLayers + objectLayers).sortedBy { it.id }
 
-    sortedLayers.forEach { addRenderLayer(layerName = it.name) }
+    //sortedLayers.forEach { addRenderLayer(layerName = it.name) }
 
     return sortedLayers
 }

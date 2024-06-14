@@ -65,8 +65,9 @@ abstract class Collider(
         val bodyDef = BodyDef()
         bodyDef.userData = this
         bodyDef.type = bodyType
-        bodyDef.position.set(getPosition().mul(SCALE_FACTOR, Vector2f()).toVec2())
+        bodyDef.position.set(getPosition().mul(SCALE_FACTOR, Vector2f()).add(offsetPosition).toVec2())
         bodyDef.angle = getRotation()
+        bodyDef.fixedRotation = true
         body = createPhysicsBody(bodyDef)
 
         val fixtureDef = FixtureDef()
@@ -78,7 +79,7 @@ abstract class Collider(
     }
 
     override fun update() {
-        setPosition(body.position.toVector2f().mul(INVERSE_SCALE_FACTOR))
+        setPosition(body.position.toVector2f().sub(offsetPosition).mul(INVERSE_SCALE_FACTOR))
         setRotation(body.angle)
     }
 

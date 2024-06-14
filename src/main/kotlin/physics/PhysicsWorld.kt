@@ -19,7 +19,7 @@ private val world = World(Vec2(0f, -9.81f))
 private var physicsActive = false
 
 private var physicsTPS = 60
-private var physicsTimeStep = 1f / physicsTPS
+var physicsTimeStep = 1f / physicsTPS
 
 var physicsDeltaTime = 0f
 private var lastTime = 0L
@@ -47,7 +47,7 @@ fun createPhysicsJoint(jointDef: JointDef): Joint {
 
 fun startPhysics() {
     startCollisionListener()
-    initPhysicsThread()
+    //initPhysicsThread()
     physicsActive = true
 }
 

@@ -13,6 +13,7 @@ import tiledmap.engineobjects.model.ObjectProperties
 import tiledmap.layers.ID
 import tiledmap.tilesets.TileSet
 
+private const val PROPERTY_TYPE = "propertytype"
 const val OBJECT = "object"
 private const val GID = "gid"
 private const val WIDTH = "width"
@@ -54,12 +55,36 @@ fun extractObject(objectElement: Element, tileSets: List<TileSet>, path: String,
     engineObject.setScale(objectProperties.size)
     engineObject.setRotation(objectProperties.rotation)
 
-    val engineComponents = engineComponentProcessors.filter { objectProperties.customProperties.containsKey(it.key) }
-        .map { it.value.processEngineComponent(engineObject, objectProperties, tileSets, path) }
+    val engineComponents =
+        objectProperties.customProperties.filter {
+            it.value.propertyType != null && engineComponentProcessors.containsKey(
+                it.value.propertyType
+            )
+        }.map {
+            engineComponentProcessors[it.value.propertyType]!!.processEngineComponent(
+                engineObject,
+                objectProperties,
+                tileSets,
+                path,
+                it.value
+            )
+        }
 
     val rendererComponents =
-        rendererComponentProcessors.filter { objectProperties.customProperties.containsKey(it.key) }
-            .map { it.value.processRendererComponent(engineObject, objectProperties, tileSets, path) }
+        objectProperties.customProperties.filter {
+            it.value.propertyType != null && rendererComponentProcessors.containsKey(
+                it.value.propertyType
+            )
+        }.map {
+            rendererComponentProcessors[it.value.propertyType]!!.processRendererComponent(
+                engineObject,
+                objectProperties,
+                tileSets,
+                path,
+                it.value
+            )
+        }
+
     if (rendererComponents.size > 1) {
         logger.warn { "Multiple renderer components found for object ${objectProperties.name}" }
     }
@@ -81,11 +106,15 @@ fun extractObjectProperties(objectElement: Element, path: String): ObjectPropert
         objectElement.getAttribute(X).let { if (it.isNotEmpty()) it.toFloat() else 0f },
         objectElement.getAttribute(Y).let { if (it.isNotEmpty()) it.toFloat() else 0f }
     ).mul(1f, -1f)
+
     val size = Vector2f(
         objectElement.getAttribute(WIDTH).let { if (it.isNotEmpty()) it.toFloat() else 1.0f },
         objectElement.getAttribute(HEIGHT).let { if (it.isNotEmpty()) it.toFloat() else 1.0f }
     )
-    size.div(2f)
+    size.mul(0.5f)
+
+    position.sub(size.mul(Vector2f(1.0f, -1.0f), Vector2f()))
+
     val rotation = objectElement.getAttribute(ROTATION).let { if (it.isNotEmpty()) it.toFloat() else 0.0f }
 
     val tileId = objectElement.getAttribute(GID).let { if (it.isNotEmpty()) it.toInt() else null }
@@ -144,7 +173,12 @@ private fun extractCustomProperty(propertyElement: Element, name: String): Objec
         CustomPropertyType.FILE -> ObjectCustomProperty(name, type, fileValue = value)
         CustomPropertyType.CLASS -> {
             val classProperties = extractObjectCustomProperties(propertyElement)
-            ObjectCustomProperty(name, type, classValue = classProperties)
+            ObjectCustomProperty(
+                name,
+                type,
+                classValue = classProperties,
+                propertyType = propertyElement.getAttribute(PROPERTY_TYPE)
+            )
         }
 
         else -> {
@@ -162,10 +196,10 @@ private fun String.toColor(): Vector4f {
     return Vector4f(r, g, b, a)
 }
 
-fun registerEngineComponentProcessor(customPropertyName: String, processor: EngineComponentProcessor) {
-    engineComponentProcessors[customPropertyName] = processor
+fun registerEngineComponentProcessor(customType: String, processor: EngineComponentProcessor) {
+    engineComponentProcessors[customType] = processor
 }
 
-fun registerRendererComponentProcessor(customPropertyName: String, processor: RendererComponentProcessor) {
-    rendererComponentProcessors[customPropertyName] = processor
+fun registerRendererComponentProcessor(customType: String, processor: RendererComponentProcessor) {
+    rendererComponentProcessors[customType] = processor
 }

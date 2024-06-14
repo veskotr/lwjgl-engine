@@ -82,15 +82,14 @@ private fun createTile(
         return tile
     }
 
-    processTileProperties(tileSet, tileId).forEach { tile.addComponent(it) }
+    processTileProperties(tileSet, tileId, tile).forEach { tile.addComponent(it) }
 
     return tile
 }
 
-private fun processTileProperties(tileSet: TileSet, tileId: Int): List<EngineComponent> {
-    return tileSet.getTileProperties(tileId).filter { tileProcessors[it.type] != null }.map { tileProperties ->
-        tileProcessors[tileProperties.type]!!.processObjectToComponent(tileProperties)
-    }
+private fun processTileProperties(tileSet: TileSet, tileId: Int, tile: EngineObject): List<EngineComponent> {
+    return tileSet.getTileProperties(tileId).filter { tileProcessors.containsKey(it.type) }
+        .map { tileProcessors[it.type]!!.processObjectToComponent(tile = tile, objectProperties = it) }
 }
 
 private fun calculateChunkWorldSize(chunkSize: Vector2i, tileScale: Vector2f): Vector2f {

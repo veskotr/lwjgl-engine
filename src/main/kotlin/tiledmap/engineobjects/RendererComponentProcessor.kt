@@ -2,6 +2,7 @@ package tiledmap.engineobjects
 
 import graphics.rendering.Renderer
 import structure.EngineObject
+import tiledmap.engineobjects.model.ObjectCustomProperty
 import tiledmap.engineobjects.model.ObjectProperties
 import tiledmap.tilesets.TileSet
 
@@ -11,7 +12,8 @@ interface RendererComponentProcessor {
         engineObject: EngineObject,
         objectProperties: ObjectProperties,
         tileSets: List<TileSet>,
-        path: String
+        path: String,
+        customProperty: ObjectCustomProperty
     ): Renderer
 
 

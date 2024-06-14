@@ -1,19 +1,18 @@
-package tiledmap.engineobjects
-
 import structure.EngineComponent
 import structure.EngineObject
+import tiledmap.engineobjects.EngineComponentProcessor
 import tiledmap.engineobjects.model.ObjectCustomProperty
 import tiledmap.engineobjects.model.ObjectProperties
 import tiledmap.tilesets.TileSet
 
-interface EngineComponentProcessor {
-
-    fun processEngineComponent(
+class SampleComponentProcessor : EngineComponentProcessor {
+    override fun processEngineComponent(
         engineObject: EngineObject,
         objectProperties: ObjectProperties,
         tileSets: List<TileSet>,
         path: String,
         customProperty: ObjectCustomProperty
-    ): EngineComponent
-
+    ): EngineComponent {
+        return SampleComponent()
+    }
 }

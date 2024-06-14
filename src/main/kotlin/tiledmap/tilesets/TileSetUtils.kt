@@ -46,7 +46,7 @@ private fun extractTileSet(tileSetElement: Element, path: String): TileSet {
 
     val bufferIds = sliceTileSet(firstGid, rows, columns, glWith, glHeight)
 
-    return TileSet(textureAtlas, firstGid, bufferIds, tileCount, extractTileSetObjectProperties(tileSetElement, path))
+    return TileSet(textureAtlas, firstGid, bufferIds, tileCount, extractTileSetObjectProperties(tileSetElement, path, firstGid))
 }
 
 private fun sliceTileSet(firstGrid: Int, rows: Int, columns: Int, glWith: Float, glHeight: Float): Map<Int, Int> {
@@ -74,7 +74,8 @@ private fun extractTileSetTextureAtlas(tileSetElement: Element, path: String): T
 
 private fun extractTileSetObjectProperties(
     tileSetElement: Element,
-    path: String
+    path: String,
+    firstGid: Int
 ): Map<Int, MutableList<ObjectProperties>> {
     val tileElements = tileSetElement.getElementsByTagName(TILE).let { if (it.length == 0) return emptyMap() else it }
 
@@ -82,7 +83,7 @@ private fun extractTileSetObjectProperties(
 
     for (i in 0 until tileElements.length) {
         val tileElement = tileElements.item(i) as Element
-        val tileId = tileElement.getAttribute(ID).toInt()
+        val tileId = tileElement.getAttribute(ID).toInt() + firstGid
         val objectGroupElement = tileElement.getElementsByTagName(OBJECT_GROUP).item(0) as Element
         val objectElements = objectGroupElement.getElementsByTagName(OBJECT)
         val objectPropertiesList = mutableListOf<ObjectProperties>()

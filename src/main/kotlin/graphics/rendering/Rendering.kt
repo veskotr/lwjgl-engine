@@ -7,7 +7,6 @@ import graphics.shaders.createParticleShader
 val defaultShader = createBasicShader()
 val particleShader = createParticleShader()
 
-
 private var renderersMap = mutableMapOf<String, MutableSet<Renderer>>()
 
 fun initRendering() {
@@ -16,7 +15,10 @@ fun initRendering() {
 }
 
 fun addRenderer(renderer: Renderer, layerName: String) {
-    renderersMap[layerName]?.add(renderer)
+    if (!renderersMap.containsKey(layerName)) {
+        addRenderLayer(layerName)
+    }
+    renderersMap[layerName]!!.add(renderer)
 }
 
 fun removeRenderer(renderer: Renderer, layerName: String) {

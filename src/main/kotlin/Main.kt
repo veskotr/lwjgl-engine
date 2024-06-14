@@ -1,11 +1,15 @@
 import engine.initGame
 import engine.runGame
 import engine.startGame
+import graphics.rendering.sprite.SpriteRendererProcessor
 import org.joml.Vector2f
+import physics.BoxColliderComponentProcessor
 import physics.TileBoxColliderProcessor
 import physics.setWorldGravity
 import tiledmap.chunks.registerTileProcessor
 import tiledmap.createTiledMapFromFile
+import tiledmap.engineobjects.registerEngineComponentProcessor
+import tiledmap.engineobjects.registerRendererComponentProcessor
 
 fun main() {
     initGame(
@@ -20,7 +24,13 @@ fun main() {
 
     registerTileProcessor(type = "BoxCollider", processor = TileBoxColliderProcessor())
 
-    val map = createTiledMapFromFile("/levels/testScene")
+    registerEngineComponentProcessor(customType = "BoxCollider", processor = BoxColliderComponentProcessor())
+
+    registerEngineComponentProcessor(customType = "SampleComponent", processor = SampleComponentProcessor())
+
+    registerRendererComponentProcessor(customType = "SpriteRenderer", processor = SpriteRendererProcessor())
+
+    val map = createTiledMapFromFile("/levels/realisticScene")
 
     startGame()
 

@@ -14,6 +14,7 @@ class SampleComponent : EngineComponent(), ICollisionListener {
 
     override fun start() {
         camera.scale = Vector2f(1f)
+        println("Sample component started!")
     }
 
     override fun update() {
