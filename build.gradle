@@ -59,6 +59,8 @@ dependencies {
     implementation 'commons-io:commons-io:2.16.1'
 
     implementation name: 'jbox2d-library-2.2.1.1'
+    implementation 'io.github.microutils:kotlin-logging-jvm:2.0.11'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.6'
 
     implementation "org.lwjgl:lwjgl"
     implementation "org.lwjgl:lwjgl-assimp"

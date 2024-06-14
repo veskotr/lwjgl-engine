@@ -6,10 +6,15 @@ import geometry.Transform
 import graphics.rendering.Renderer
 import org.joml.Vector2f
 import physics.ICollisionListener
-import tiledmap.layers.MapLayer
 import kotlin.reflect.KClass
 
-class EngineObject(var mapLayer: MapLayer? = null, val id: Int? = null) : IEngineObject {
+class EngineObject(
+    val id: Int? = null,
+    position: Vector2f = Vector2f(),
+    scale: Vector2f = Vector2f(),
+    val index: Int = id ?: 0,
+    val layerName: String
+) : IEngineObject {
 
     val transform: Transform = Transform(this)
 
@@ -17,7 +22,7 @@ class EngineObject(var mapLayer: MapLayer? = null, val id: Int? = null) : IEngin
 
     private val children: MutableSet<EngineObject> = mutableSetOf()
 
-    var renderer: Renderer<EngineObject>? = null
+    var renderer: Renderer? = null
         set(value) {
             field = value
             field!!.parentObject = this
@@ -31,12 +36,17 @@ class EngineObject(var mapLayer: MapLayer? = null, val id: Int? = null) : IEngin
 
             children.forEach { it.active = value }
 
+            if (renderer != null) {
+                renderer?.setActive(value)
+            }
             field = value
         }
 
     init {
         addEngineObject(this)
         active = true
+        transform.position = position
+        transform.scale = scale
     }
 
     override fun start() {
@@ -64,7 +74,7 @@ class EngineObject(var mapLayer: MapLayer? = null, val id: Int? = null) : IEngin
     }
 
     fun createChild(): EngineObject {
-        val child = EngineObject(mapLayer)
+        val child = EngineObject(layerName = layerName)
         addChild(child)
         return child
     }

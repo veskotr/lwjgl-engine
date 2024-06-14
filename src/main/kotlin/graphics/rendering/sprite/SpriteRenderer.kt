@@ -8,10 +8,9 @@ import graphics.shaders.PROJECTION_UNIFORM
 import graphics.shaders.SAMPLER_UNIFORM
 import graphics.shaders.Shader
 import graphics.shaders.TRANSFORM_UNIFORM
-import structure.EngineObject
 
 
-class SpriteRenderer(override val shader: Shader = defaultShader, val sprite: Sprite) : Renderer<EngineObject>() {
+class SpriteRenderer(override val shader: Shader = defaultShader, val sprite: Sprite, layerName: String) : Renderer(layerName = layerName) {
 
     override fun render() {
         shader.bind()

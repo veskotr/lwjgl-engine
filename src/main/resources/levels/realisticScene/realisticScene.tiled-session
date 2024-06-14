@@ -1,0 +1,48 @@
+{
+    "Map/SizeTest": {
+        "height": 4300,
+        "width": 2
+    },
+    "activeFile": "map.tmx",
+    "expandedProjectPaths": [
+        ".",
+        "templates"
+    ],
+    "file.lastUsedOpenFilter": "All Files (*)",
+    "fileStates": {
+        "": {
+            "scaleInEditor": 2.69
+        },
+        "map.tmx": {
+            "scale": 1.49,
+            "selectedLayer": 2,
+            "viewCenter": {
+                "x": 327.1812080536913,
+                "y": 140.26845637583895
+            }
+        },
+        "map.tmx#Grass": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Structures": {
+            "scaleInDock": 1
+        },
+        "map.tmx#Walls": {
+            "scaleInDock": 1
+        }
+    },
+    "last.imagePath": "/Users/A1CF452/Desktop/projects/lwjgl-engine/src/main/resources/levels/realisticScene",
+    "last.objectTemplatePath": "/Users/A1CF452/Desktop/projects/lwjgl-engine/src/main/resources/levels/realisticScene/templates",
+    "last.objectTypesPath": "/Users/A1CF452/Desktop/projects/lwjgl-engine/src/main/resources/levels/propertytypes.json",
+    "map.fixedSize": false,
+    "map.lastUsedFormat": "tmx",
+    "openFiles": [
+        "map.tmx"
+    ],
+    "project": "realisticScene.tiled-project",
+    "property.type": "SampleComponent",
+    "recentFiles": [
+        "map.tmx"
+    ],
+    "tileset.embedInMap": true
+}

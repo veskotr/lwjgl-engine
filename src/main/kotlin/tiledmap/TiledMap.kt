@@ -1,26 +1,8 @@
 package tiledmap
 
-import structure.IEngineObject
-import tiledmap.layers.MapLayer
-import tiledmap.rendering.TiledMapRenderer
+import tiledmap.layers.TiledMapLayer
 
-class TiledMap(val layers: List<MapLayer>): IEngineObject {
 
-    val renderer = TiledMapRenderer(this)
+class TiledMap(val layers: List<TiledMapLayer>) {
 
-    val children = mutableListOf<IEngineObject>()
-
-    var active: Boolean = false
-        set(value) {
-            field = value
-
-        }
-
-    override fun start() {
-        TODO("Not yet implemented")
-    }
-
-    override fun update() {
-        TODO("Not yet implemented")
-    }
 }

@@ -1,0 +1,663 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="5" nextobjectid="2">
+ <tileset firstgid="1" name="Grass" tilewidth="32" tileheight="32" tilecount="64" columns="8">
+  <image source="TX Tileset Grass.png" width="256" height="256"/>
+ </tileset>
+ <tileset firstgid="65" name="Walls" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="TX Tileset Wall.png" width="512" height="512"/>
+  <tile id="17">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+    <object id="2" template="templates/WallHorizontalCollider.tx" type="BoxCollider" x="8" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallHorizontalFullCollider.tx" type="BoxCollider" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="19">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallHorizontalCollider.tx" x="0" y="0"/>
+    <object id="2" template="templates/WallCollider.tx" x="23.9504" y="-0.0640384"/>
+   </objectgroup>
+  </tile>
+  <tile id="20">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="21">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="22">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="23">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="24">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="33">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="35">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="36">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="37">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="38">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="40">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="49">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="50">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="51">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="52">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="56">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="65">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="2" y="0" width="30" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="66">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
+    <object id="2" type="BoxCollider" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="67">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="0" y="0" width="30" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="102">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="118">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <tileset firstgid="321" name="Structures" tilewidth="32" tileheight="32" tilecount="256" columns="16">
+  <image source="TX Struct.png" width="512" height="512"/>
+  <tile id="17">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" type="BoxCollider" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="18">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="20">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="21">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="23">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="24">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="33">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="34">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="36">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="37">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="39">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="40">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="49">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="50">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="52">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="53">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="55">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="77">
+   <objectgroup draworder="index" id="3">
+    <object id="2" template="templates/WallTopCollider.tx" type="BoxCollider" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="78">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="81">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="82">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="84">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="87">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="93">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="0" y="0" width="17" height="32" visible="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="94">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="15" y="0" width="17" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="97">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="98">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="100">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="103">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="113">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="114">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="116">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+  <tile id="119">
+   <objectgroup draworder="index" id="2">
+    <object id="1" template="templates/WallCollider.tx" x="0" y="0"/>
+   </objectgroup>
+  </tile>
+ </tileset>
+ <layer id="2" name="Ground" width="30" height="20">
+  <data encoding="csv">
+   <chunk x="-16" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,14,14,15,
+0,0,0,0,0,0,0,0,0,0,0,0,0,21,0,0
+</chunk>
+   <chunk x="0" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+32,22,19,10,6,24,27,15,9,27,8,20,14,1,27,26,
+0,0,0,0,0,0,0,0,0,0,0,0,23,31,17,27
+</chunk>
+   <chunk x="16" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+22,19,26,10,26,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,18,29,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="-16" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,19,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,21,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,26,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,12,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,29,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,23,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,18,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,31,10,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,20,20,22,
+0,0,0,0,0,0,0,0,0,0,0,0,0,29,11,7,
+0,0,0,0,0,0,0,0,0,0,0,0,0,21,27,28,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,29,11,0,
+0,0,0,0,0,0,0,0,0,13,0,131,0,15,22,5,
+0,0,0,0,0,0,0,0,0,0,0,30,32,4,17,5,
+0,28,1,2,5,370,371,12,25,26,32,9,10,7,3,31,
+0,10,21,13,28,22,19,29,23,30,9,30,2,28,26,25,
+0,27,11,6,29,30,1,6,27,18,32,25,13,28,18,25,
+0,9,23,30,26,15,23,9,24,21,31,4,2,10,10,11,
+3,8,9,1,10,32,31,2,26,22,19,12,17,2,1,28,
+13,6,16,5,9,21,32,28,30,3,30,3,20,28,3,8,
+24,12,22,31,12,3,27,10,25,5,9,20,12,19,15,4,
+19,25,25,24,30,18,8,28,11,15,8,22,1,9,3,22,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="16" y="0" width="16" height="16">
+0,0,0,17,27,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,18,25,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,6,21,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,9,11,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,23,21,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,23,13,0,0,0,0,0,0,0,0,0,0,0,
+31,0,0,8,12,0,0,0,0,0,0,0,0,0,0,0,
+13,0,10,15,13,0,0,0,0,0,0,0,0,0,0,0,
+2,4,30,10,1,0,0,0,0,0,0,0,0,0,0,0,
+29,7,28,8,28,0,0,0,0,0,0,0,0,0,0,0,
+31,15,7,4,3,0,0,0,0,0,0,0,0,0,0,0,
+20,19,8,32,32,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+  </data>
+ </layer>
+ <layer id="3" name="Level1" width="30" height="20">
+  <data encoding="csv">
+   <chunk x="-16" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,14
+</chunk>
+   <chunk x="0" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+4,27,16,29,30,16,22,18,21,11,20,6,0,0,0,0
+</chunk>
+   <chunk x="16" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+19,10,12,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="-16" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,24,31,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,5,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,32,30,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,21,2,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,2,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,16,1,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,31,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,29,8,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="0" y="0" width="16" height="16">
+3,30,15,7,7,19,30,19,25,10,5,28,10,25,15,5,
+31,21,3,12,10,16,10,26,13,19,12,24,0,0,0,0,
+24,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+16,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+31,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+28,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+6,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="16" y="0" width="16" height="16">
+4,26,30,0,0,0,0,0,0,0,0,0,0,0,0,0,
+5,23,28,0,0,0,0,0,0,0,0,0,0,0,0,0,
+21,32,17,0,0,0,0,0,0,0,0,0,0,0,0,0,
+20,11,11,0,0,0,0,0,0,0,0,0,0,0,0,0,
+13,9,6,0,0,0,0,0,0,0,0,0,0,0,0,0,
+2,25,1,0,0,0,0,0,0,0,0,0,0,0,0,0,
+30,9,18,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+  </data>
+ </layer>
+ <objectgroup id="4" name="Object Layer 1">
+  <object id="1" x="233.605" y="187.467" width="28" height="48">
+   <properties>
+    <property name="behaviourComponent" type="class" propertytype="SampleComponent"/>
+    <property name="collider" type="class" propertytype="BoxCollider">
+     <properties>
+      <property name="offsetPosition" type="class" propertytype="Vector2f">
+       <properties>
+        <property name="y" type="float" value="-20"/>
+       </properties>
+      </property>
+      <property name="size" type="class" propertytype="Vector2f">
+       <properties>
+        <property name="x" type="float" value="28"/>
+        <property name="y" type="float" value="8"/>
+       </properties>
+      </property>
+     </properties>
+    </property>
+    <property name="renderer" type="class" propertytype="SpriteRenderer">
+     <properties>
+      <property name="sprite" type="file" value="tile2.png"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+ </objectgroup>
+ <layer id="1" name="Walls" width="30" height="20">
+  <data encoding="csv">
+   <chunk x="-16" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,82,83
+</chunk>
+   <chunk x="0" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+83,83,83,83,83,83,83,83,83,83,83,84,0,0,0,0
+</chunk>
+   <chunk x="16" y="-16" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+82,83,84,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="-16" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,98,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,114,115,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,130,131,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="0" y="0" width="16" height="16">
+0,0,0,0,0,0,0,0,0,0,0,133,83,83,83,83,
+0,0,0,0,0,0,0,0,0,0,0,85,86,398,399,88,
+85,86,88,167,88,338,339,86,87,167,115,116,102,414,415,104,
+101,102,104,183,104,354,355,102,103,183,103,132,0,0,0,0,
+117,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+100,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+116,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+132,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+   <chunk x="16" y="0" width="16" height="16">
+137,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,
+89,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,
+105,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,
+105,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,
+105,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,
+105,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,
+105,0,100,0,0,0,0,0,0,0,0,0,0,0,0,0,
+114,115,116,0,0,0,0,0,0,0,0,0,0,0,0,0,
+130,131,132,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
+</chunk>
+  </data>
+ </layer>
+</map>

@@ -14,7 +14,7 @@ private const val MAP_FILE = "map.tmx"
 fun createTiledMapFromFile(path: String): TiledMap {
     val inputStream = object {}.javaClass.getResourceAsStream("$path/$MAP_FILE")
         ?: error("Could not find map file $MAP_FILE in $path")
-    val document = getMapDocument(inputStream)
+    val document = getXmlDocument(inputStream)
     val mapElement = document.documentElement
 
     val tileScale =
@@ -23,12 +23,11 @@ fun createTiledMapFromFile(path: String): TiledMap {
             mapElement.getAttribute(TILE_HEIGHT).toFloat() / 2.0f
         )
     val tileSets = extractTileSets(mapElement, path)
-    var layers = extractLayers(mapElement, tileSets, tileScale)
 
-    return TiledMap(layers)
+    return TiledMap(extractLayers(mapElement, tileSets, tileScale, path))
 }
 
-private fun getMapDocument(inputStream: InputStream): Document {
+fun getXmlDocument(inputStream: InputStream): Document {
     val factory = DocumentBuilderFactory.newInstance()
     factory.isValidating = false
     val builder = factory.newDocumentBuilder()

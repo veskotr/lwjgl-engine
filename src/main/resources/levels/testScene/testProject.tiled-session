@@ -1,18 +1,20 @@
 {
-    "activeFile": "",
+    "activeFile": "map.tmx",
     "expandedProjectPaths": [
+        "templates"
     ],
+    "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
             "scaleInDock": 1,
             "scaleInEditor": 1
         },
         "map.tmx": {
-            "scale": 0.078857421875,
-            "selectedLayer": 0,
+            "scale": 0.4,
+            "selectedLayer": 1,
             "viewCenter": {
-                "x": 7824.247678018576,
-                "y": 5433.85758513932
+                "x": 781.25,
+                "y": 915
             }
         },
         "map.tmx#Grass": {
@@ -29,9 +31,12 @@
         }
     },
     "last.objectTemplatePath": "/Users/A1CF452/Desktop/projects/lwjgl-engine/src/main/resources/levels/testScene/templates",
+    "last.objectTypesPath": "/Users/A1CF452/Desktop/projects/lwjgl-engine/src/main/resources/levels/propertytypes.json",
     "openFiles": [
+        "map.tmx"
     ],
     "project": "testProject.tiled-project",
+    "property.type": "BoxCollider",
     "recentFiles": [
         "map.tmx"
     ]

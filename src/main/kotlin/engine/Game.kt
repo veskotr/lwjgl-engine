@@ -1,17 +1,31 @@
 package engine
 
-import physics.startPhysics
-import physics.stopPhysicsLoop
 import graphics.rendering.initRendering
 import graphics.rendering.render
+import graphics.rendering.sortRenderersByYAxis
 import graphics.utils.cleanupGraphics
-import io.*
+import io.Camera
+import io.clearWindow
+import io.destroyWindow
+import io.initInput
+import io.initWindow
+import io.pollEvents
+import io.updateInput
+import io.windowShouldClose
+import mu.KotlinLogging
+import physics.physicsDeltaTime
+import physics.physicsTimeStep
+import physics.startPhysics
+import physics.stopPhysicsLoop
+import physics.updatePhysics
 
 private var timePassed = 0.0
 private var frames = 0
 var deltaTime = 0.01f
 private var lastTime = 0L
 lateinit var camera: Camera
+
+private val logger = KotlinLogging.logger { }
 
 fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScreen: Boolean, vsyncEnabled: Boolean) {
     initWindow(windowWidth, windowHeight, windowTitle, fullScreen, vsyncEnabled)
@@ -22,20 +36,28 @@ fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScree
 
 fun startGame() {
     startEngineObjects()
-    startPhysics()
+     startPhysics()
 }
 
 fun runGame() {
     while (!windowShouldClose()) {
 
         clearWindow()
-        updateEngineObjects()
-
-        render()
 
         pollEvents()
 
         updateInput()
+
+        physicsTimeStep = deltaTime
+
+        updatePhysics()
+
+        updateEngineObjects()
+
+        sortRenderersByYAxis()
+
+        render()
+
         updateTime()
     }
     stopPhysicsLoop()
