@@ -1,5 +1,6 @@
 package tiledmap.engineobjects
 
+import mu.KotlinLogging
 import org.joml.Vector2f
 import org.joml.Vector4f
 import org.w3c.dom.Element
@@ -24,7 +25,11 @@ private const val VALUE = "value"
 private const val ROTATION: String = "rotation"
 private const val TEMPLATE: String = "template"
 
-private val engineObjectProcessors: MutableMap<String, EngineObjectProcessor> = mutableMapOf()
+private val engineComponentProcessors: MutableMap<String, EngineComponentProcessor> = mutableMapOf()
+
+private val rendererComponentProcessors: MutableMap<String, RendererComponentProcessor> = mutableMapOf()
+
+private val logger = KotlinLogging.logger {}
 
 fun extractObjects(
     objectLayerElement: Element,
@@ -49,15 +54,23 @@ fun extractObject(objectElement: Element, tileSets: List<TileSet>, path: String,
     engineObject.setScale(objectProperties.size)
     engineObject.setRotation(objectProperties.rotation)
 
-    return engineObjectProcessors[objectProperties.type].let { processor ->
-        processor?.processEngineObject(
-            engineObject = engineObject,
-            objectProperties = objectProperties,
-            tileSets = tileSets,
-            path = path
-        )
-            ?: EngineObject(id = objectProperties.id, layerName = layerName)
+    val engineComponents = engineComponentProcessors.filter { objectProperties.customProperties.containsKey(it.key) }
+        .map { it.value.processEngineComponent(engineObject, objectProperties, tileSets, path) }
+
+    val rendererComponents =
+        rendererComponentProcessors.filter { objectProperties.customProperties.containsKey(it.key) }
+            .map { it.value.processRendererComponent(engineObject, objectProperties, tileSets, path) }
+    if (rendererComponents.size > 1) {
+        logger.warn { "Multiple renderer components found for object ${objectProperties.name}" }
     }
+
+    if (rendererComponents.isNotEmpty()) {
+        engineObject.renderer = rendererComponents.first()
+    }
+
+    engineComponents.forEach(engineObject::addComponent)
+
+    return engineObject
 }
 
 fun extractObjectProperties(objectElement: Element, path: String): ObjectProperties {
@@ -124,13 +137,18 @@ private fun extractCustomProperty(propertyElement: Element, name: String): Objec
     val value = propertyElement.getAttribute(VALUE)
 
     return when (type) {
-        CustomPropertyType.INT -> ObjectCustomProperty(name, intValue = value.toInt())
-        CustomPropertyType.FLOAT -> ObjectCustomProperty(name, floatValue = value.toFloat())
-        CustomPropertyType.BOOL -> ObjectCustomProperty(name, boolValue = value.toBoolean())
-        CustomPropertyType.COLOR -> ObjectCustomProperty(name, colorValue = value.toColor())
-        CustomPropertyType.FILE -> ObjectCustomProperty(name, fileValue = value)
+        CustomPropertyType.INT -> ObjectCustomProperty(name, type, intValue = value.toInt())
+        CustomPropertyType.FLOAT -> ObjectCustomProperty(name, type, floatValue = value.toFloat())
+        CustomPropertyType.BOOL -> ObjectCustomProperty(name, type, boolValue = value.toBoolean())
+        CustomPropertyType.COLOR -> ObjectCustomProperty(name, type, colorValue = value.toColor())
+        CustomPropertyType.FILE -> ObjectCustomProperty(name, type, fileValue = value)
+        CustomPropertyType.CLASS -> {
+            val classProperties = extractObjectCustomProperties(propertyElement)
+            ObjectCustomProperty(name, type, classValue = classProperties)
+        }
+
         else -> {
-            ObjectCustomProperty(name, stringValue = value)
+            ObjectCustomProperty(name, type, stringValue = value)
         }
     }
 }
@@ -144,6 +162,10 @@ private fun String.toColor(): Vector4f {
     return Vector4f(r, g, b, a)
 }
 
-fun registerEngineComponentProcessor(name: String, processor: EngineObjectProcessor) {
-    engineObjectProcessors[name] = processor
+fun registerEngineComponentProcessor(customPropertyName: String, processor: EngineComponentProcessor) {
+    engineComponentProcessors[customPropertyName] = processor
+}
+
+fun registerRendererComponentProcessor(customPropertyName: String, processor: RendererComponentProcessor) {
+    rendererComponentProcessors[customPropertyName] = processor
 }

@@ -1,16 +1,17 @@
 package tiledmap.engineobjects
 
+import structure.EngineComponent
 import structure.EngineObject
 import tiledmap.engineobjects.model.ObjectProperties
 import tiledmap.tilesets.TileSet
 
-abstract class EngineObjectProcessor() {
+interface EngineComponentProcessor {
 
-    abstract fun processEngineObject(
+    fun processEngineComponent(
         engineObject: EngineObject,
         objectProperties: ObjectProperties,
         tileSets: List<TileSet>,
         path: String
-    ): EngineObject
+    ): EngineComponent
 
 }

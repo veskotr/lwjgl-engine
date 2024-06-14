@@ -3,6 +3,7 @@ package tiledmap.chunks
 import org.joml.Vector2f
 import org.joml.Vector2i
 import org.w3c.dom.Element
+import structure.EngineComponent
 import structure.EngineObject
 import tiledmap.engineobjects.TileObjectProcessor
 import tiledmap.tilesets.TileSet
@@ -77,9 +78,19 @@ private fun createTile(
         layerName = layerName
     )
 
-    val tileComponents = tileProcessors[tileSet?.tileTemplateProperties?.get(tileId)?.first()?.type]
+    if (tileSet == null) {
+        return tile
+    }
+
+    processTileProperties(tileSet, tileId).forEach { tile.addComponent(it) }
 
     return tile
+}
+
+private fun processTileProperties(tileSet: TileSet, tileId: Int): List<EngineComponent> {
+    return tileSet.getTileProperties(tileId).filter { tileProcessors[it.type] != null }.map { tileProperties ->
+        tileProcessors[tileProperties.type]!!.processObjectToComponent(tileProperties)
+    }
 }
 
 private fun calculateChunkWorldSize(chunkSize: Vector2i, tileScale: Vector2f): Vector2f {

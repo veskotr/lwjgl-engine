@@ -7,5 +7,6 @@ enum class CustomPropertyType {
     BOOL,
     COLOR,
     FILE,
-    OBJECT
+    OBJECT,
+    CLASS
 }

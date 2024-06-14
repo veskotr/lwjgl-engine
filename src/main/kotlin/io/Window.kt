@@ -11,14 +11,11 @@ import org.lwjgl.glfw.GLFW.glfwCreateWindow
 import org.lwjgl.glfw.GLFW.glfwDefaultWindowHints
 import org.lwjgl.glfw.GLFW.glfwDestroyWindow
 import org.lwjgl.glfw.GLFW.glfwGetPrimaryMonitor
-import org.lwjgl.glfw.GLFW.glfwGetVideoMode
-import org.lwjgl.glfw.GLFW.glfwGetWindowSize
 import org.lwjgl.glfw.GLFW.glfwInit
 import org.lwjgl.glfw.GLFW.glfwMakeContextCurrent
 import org.lwjgl.glfw.GLFW.glfwPollEvents
 import org.lwjgl.glfw.GLFW.glfwSetErrorCallback
 import org.lwjgl.glfw.GLFW.glfwSetKeyCallback
-import org.lwjgl.glfw.GLFW.glfwSetWindowPos
 import org.lwjgl.glfw.GLFW.glfwSetWindowShouldClose
 import org.lwjgl.glfw.GLFW.glfwShowWindow
 import org.lwjgl.glfw.GLFW.glfwSwapBuffers
@@ -34,7 +31,6 @@ import org.lwjgl.opengl.GL11.GL_ONE_MINUS_SRC_ALPHA
 import org.lwjgl.opengl.GL11.GL_SRC_ALPHA
 import org.lwjgl.opengl.GL11.glBlendFunc
 import org.lwjgl.opengl.GL11.glEnable
-import org.lwjgl.system.MemoryStack
 import org.lwjgl.system.MemoryUtil
 
 var window = 0L
@@ -46,15 +42,19 @@ fun initWindow(width: Int, height: Int, title: String, fullScreen: Boolean, vsyn
     glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE)
     glfwWindowHint(GLFW_RESIZABLE, GLFW_TRUE)
     val monitor = if (fullScreen) glfwGetPrimaryMonitor() else MemoryUtil.NULL
+
     window = glfwCreateWindow(width, height, title, monitor, MemoryUtil.NULL)
+
     if (window == MemoryUtil.NULL) throw RuntimeException("Failed to create the GLFW window")
+
     glfwSetKeyCallback(window) { window, key, _, action, _ ->
         if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE) glfwSetWindowShouldClose(window, true)
     }
     glfwMakeContextCurrent(window)
     glfwShowWindow(window)
-    if (vsyncEnabled)
+    if (vsyncEnabled) {
         glfwSwapInterval(1)
+    }
     GL.createCapabilities()
     GL11.glClearColor(0.0f, 0.0f, 0.0f, 0.0f)
     glEnable(GL_BLEND)

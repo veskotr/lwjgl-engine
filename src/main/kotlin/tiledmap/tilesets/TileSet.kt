@@ -31,4 +31,8 @@ class TileSet(
     fun getTileBufferId(tileId: Int): Int {
         return bufferIds[tileId]!!
     }
+
+    fun getTileProperties(tileId: Int): List<ObjectProperties> {
+        return tileTemplateProperties[tileId] ?: listOf()
+    }
 }

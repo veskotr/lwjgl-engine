@@ -1,17 +1,11 @@
 import engine.initGame
 import engine.runGame
 import engine.startGame
-import graphics.Texture
-import graphics.particles.ParticleEmitter
-import graphics.rendering.sprite.SpriteRenderer
-import graphics.rendering.sprite.createSprite
-import org.jbox2d.dynamics.BodyType
 import org.joml.Vector2f
-import physics.BoxCollider
+import physics.TileBoxColliderProcessor
 import physics.setWorldGravity
-import structure.EngineObject
+import tiledmap.chunks.registerTileProcessor
 import tiledmap.createTiledMapFromFile
-
 
 fun main() {
     initGame(
@@ -23,6 +17,8 @@ fun main() {
     )
 
     setWorldGravity(Vector2f(0f, 0f))
+
+    registerTileProcessor(type = "BoxCollider", processor = TileBoxColliderProcessor())
 
     val map = createTiledMapFromFile("/levels/testScene")
 
