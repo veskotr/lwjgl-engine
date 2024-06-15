@@ -1,6 +1,5 @@
 package tiledmap.layers
 
-import graphics.rendering.addRenderLayer
 import org.joml.Vector2f
 import org.w3c.dom.Element
 import structure.EngineObject
@@ -25,8 +24,6 @@ fun extractLayers(
     val objectLayers = extractObjectLayers(mapElement, tileSets, path)
     val sortedLayers = (tiledLayers + objectLayers).sortedBy { it.id }
 
-    //sortedLayers.forEach { addRenderLayer(layerName = it.name) }
-
     return sortedLayers
 }
 
@@ -42,7 +39,7 @@ private fun extractObjectLayers(mapElement: Element, tileSets: List<TileSet>, pa
 
 private fun extractObjectLayer(objectLayerElement: Element, tileSets: List<TileSet>, path: String): TiledMapLayer {
     val objectLayerId = objectLayerElement.getAttribute(ID).toInt()
-    val objectLayerName = objectLayerElement.getAttribute(NAME)
+    val objectLayerName = "$objectLayerId${objectLayerElement.getAttribute(NAME)}"
     val objects = extractObjects(objectLayerElement, tileSets, path = path, layerName = objectLayerName)
     return TiledMapLayer(id = objectLayerId, objects = objects.toMutableList(), name = objectLayerName)
 }
@@ -60,7 +57,7 @@ private fun extractTiledLayers(mapElement: Element, tileSets: List<TileSet>, til
 private fun extractTiledLayer(layerElement: Element, tileSets: List<TileSet>, tileScale: Vector2f): TiledMapLayer {
     val data = (layerElement.getElementsByTagName(DATA).item(0) as Element)
     val layerId = layerElement.getAttribute(ID).toInt()
-    val layerName = layerElement.getAttribute(NAME)
+    val layerName = "$layerId${layerElement.getAttribute(NAME)}"
     val chunkElements = data.getElementsByTagName(CHUNK)
     val chunks = mutableListOf<EngineObject>()
     for (i in 0 until chunkElements.length) {

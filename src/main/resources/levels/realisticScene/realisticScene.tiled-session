@@ -11,14 +11,14 @@
     "file.lastUsedOpenFilter": "All Files (*)",
     "fileStates": {
         "": {
-            "scaleInEditor": 2.69
+            "scaleInEditor": 1
         },
         "map.tmx": {
-            "scale": 1.49,
-            "selectedLayer": 2,
+            "scale": 1.19,
+            "selectedLayer": 3,
             "viewCenter": {
-                "x": 327.1812080536913,
-                "y": 140.26845637583895
+                "x": 450.84033613445376,
+                "y": 184.03361344537814
             }
         },
         "map.tmx#Grass": {
@@ -40,7 +40,7 @@
         "map.tmx"
     ],
     "project": "realisticScene.tiled-project",
-    "property.type": "SampleComponent",
+    "property.type": "string",
     "recentFiles": [
         "map.tmx"
     ],

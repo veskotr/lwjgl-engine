@@ -1,6 +1,21 @@
 package graphics.shaders
 
-import org.lwjgl.opengl.GL20.*
+import org.lwjgl.opengl.GL20.GL_COMPILE_STATUS
+import org.lwjgl.opengl.GL20.GL_FRAGMENT_SHADER
+import org.lwjgl.opengl.GL20.GL_LINK_STATUS
+import org.lwjgl.opengl.GL20.GL_VALIDATE_STATUS
+import org.lwjgl.opengl.GL20.GL_VERTEX_SHADER
+import org.lwjgl.opengl.GL20.glAttachShader
+import org.lwjgl.opengl.GL20.glCompileShader
+import org.lwjgl.opengl.GL20.glCreateProgram
+import org.lwjgl.opengl.GL20.glCreateShader
+import org.lwjgl.opengl.GL20.glGetProgramInfoLog
+import org.lwjgl.opengl.GL20.glGetProgrami
+import org.lwjgl.opengl.GL20.glGetShaderInfoLog
+import org.lwjgl.opengl.GL20.glGetShaderi
+import org.lwjgl.opengl.GL20.glLinkProgram
+import org.lwjgl.opengl.GL20.glShaderSource
+import org.lwjgl.opengl.GL20.glValidateProgram
 import java.io.BufferedReader
 import java.io.IOException
 import java.io.InputStream
@@ -62,9 +77,19 @@ fun loadShaderCode(relativeFilePath: String): String {
 }
 
 fun createBasicShader(): Shader {
-    return createShader(loadShaderCode("/shaders/default/vertex.glsl"), loadShaderCode("/shaders/default/fragment.glsl"))
+    return createShader(
+        loadShaderCode("/shaders/default/vertex.glsl"),
+        loadShaderCode("/shaders/default/fragment.glsl")
+    )
 }
 
 fun createParticleShader(): Shader {
-    return createShader(loadShaderCode("/shaders/particle/vertex.glsl"), loadShaderCode("/shaders/particle/fragment.glsl"))
+    return createShader(
+        loadShaderCode("/shaders/particle/vertex.glsl"),
+        loadShaderCode("/shaders/particle/fragment.glsl")
+    )
+}
+
+fun createDebugShader(): Shader {
+    return createShader(loadShaderCode("/shaders/debug/vertex.glsl"), loadShaderCode("/shaders/debug/fragment.glsl"))
 }

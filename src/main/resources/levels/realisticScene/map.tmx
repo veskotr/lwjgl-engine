@@ -29,17 +29,17 @@
   </tile>
   <tile id="21">
    <objectgroup draworder="index" id="2">
-    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
   <tile id="22">
    <objectgroup draworder="index" id="2">
-    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
   <tile id="23">
    <objectgroup draworder="index" id="2">
-    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
   <tile id="24">
@@ -70,6 +70,12 @@
   <tile id="38">
    <objectgroup draworder="index" id="2">
     <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
+    <object id="2" type="BoxCollider" x="0" y="0" width="32" height="32"/>
+   </objectgroup>
+  </tile>
+  <tile id="39">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="0.576346" y="0.128077" width="32" height="32"/>
    </objectgroup>
   </tile>
   <tile id="40">
@@ -79,17 +85,17 @@
   </tile>
   <tile id="49">
    <objectgroup draworder="index" id="2">
-    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
   <tile id="50">
    <objectgroup draworder="index" id="2">
-    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
   <tile id="51">
    <objectgroup draworder="index" id="2">
-    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
   <tile id="52">
@@ -109,8 +115,7 @@
   </tile>
   <tile id="66">
    <objectgroup draworder="index" id="2">
-    <object id="1" type="BoxCollider" x="0" y="0" width="32" height="32"/>
-    <object id="2" type="BoxCollider" x="0" y="0" width="32" height="32"/>
+    <object id="1" name="Pesho" type="BoxCollider" x="0" y="0" width="32" height="32"/>
    </objectgroup>
   </tile>
   <tile id="67">
@@ -248,12 +253,12 @@
   </tile>
   <tile id="93">
    <objectgroup draworder="index" id="2">
-    <object id="1" type="BoxCollider" x="0" y="0" width="17" height="32" visible="0"/>
+    <object id="4" template="templates/EntrenceCollider.tx" x="0" y="0"/>
    </objectgroup>
   </tile>
   <tile id="94">
    <objectgroup draworder="index" id="2">
-    <object id="1" type="BoxCollider" x="15" y="0" width="17" height="32"/>
+    <object id="1" template="templates/EntrenceCollider.tx" x="15" y="0"/>
    </objectgroup>
   </tile>
   <tile id="97">
@@ -297,7 +302,7 @@
    </objectgroup>
   </tile>
  </tileset>
- <layer id="2" name="Ground" width="30" height="20">
+ <layer id="1" name="Ground" width="30" height="20">
   <data encoding="csv">
    <chunk x="-16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -374,7 +379,7 @@
    <chunk x="0" y="0" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,29,11,0,
-0,0,0,0,0,0,0,0,0,13,0,131,0,15,22,5,
+0,0,0,0,0,0,0,0,0,13,0,0,0,15,22,5,
 0,0,0,0,0,0,0,0,0,0,0,30,32,4,17,5,
 0,28,1,2,5,370,371,12,25,26,32,9,10,7,3,31,
 0,10,21,13,28,22,19,29,23,30,9,30,2,28,26,25,
@@ -396,7 +401,7 @@
 0,0,0,9,11,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,23,21,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,23,13,0,0,0,0,0,0,0,0,0,0,0,
-31,0,0,8,12,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,8,12,0,0,0,0,0,0,0,0,0,0,0,
 13,0,10,15,13,0,0,0,0,0,0,0,0,0,0,0,
 2,4,30,10,1,0,0,0,0,0,0,0,0,0,0,0,
 29,7,28,8,28,0,0,0,0,0,0,0,0,0,0,0,
@@ -409,7 +414,7 @@
 </chunk>
   </data>
  </layer>
- <layer id="3" name="Level1" width="30" height="20">
+ <layer id="2" name="Level1" width="30" height="20">
   <data encoding="csv">
    <chunk x="-16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -521,34 +526,7 @@
 </chunk>
   </data>
  </layer>
- <objectgroup id="4" name="Object Layer 1">
-  <object id="1" x="233.605" y="187.467" width="28" height="48">
-   <properties>
-    <property name="behaviourComponent" type="class" propertytype="SampleComponent"/>
-    <property name="collider" type="class" propertytype="BoxCollider">
-     <properties>
-      <property name="offsetPosition" type="class" propertytype="Vector2f">
-       <properties>
-        <property name="y" type="float" value="-20"/>
-       </properties>
-      </property>
-      <property name="size" type="class" propertytype="Vector2f">
-       <properties>
-        <property name="x" type="float" value="28"/>
-        <property name="y" type="float" value="8"/>
-       </properties>
-      </property>
-     </properties>
-    </property>
-    <property name="renderer" type="class" propertytype="SpriteRenderer">
-     <properties>
-      <property name="sprite" type="file" value="tile2.png"/>
-     </properties>
-    </property>
-   </properties>
-  </object>
- </objectgroup>
- <layer id="1" name="Walls" width="30" height="20">
+ <layer id="3" name="Walls" width="30" height="20">
   <data encoding="csv">
    <chunk x="-16" y="-16" width="16" height="16">
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -660,4 +638,32 @@
 </chunk>
   </data>
  </layer>
+ <objectgroup id="4" name="Object Layer 1">
+  <object id="1" x="226.882" y="161.417" width="28" height="48">
+   <properties>
+    <property name="behaviourComponent" type="class" propertytype="SampleComponent"/>
+    <property name="collider" type="class" propertytype="BoxCollider">
+     <properties>
+      <property name="offsetPosition" type="class" propertytype="Vector2f">
+       <properties>
+        <property name="y" type="float" value="-20"/>
+       </properties>
+      </property>
+      <property name="size" type="class" propertytype="Vector2f">
+       <properties>
+        <property name="x" type="float" value="14"/>
+        <property name="y" type="float" value="4"/>
+       </properties>
+      </property>
+     </properties>
+    </property>
+    <property name="layerName" value="Ground"/>
+    <property name="renderer" type="class" propertytype="SpriteRenderer">
+     <properties>
+      <property name="sprite" type="file" value="tile2.png"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+ </objectgroup>
 </map>

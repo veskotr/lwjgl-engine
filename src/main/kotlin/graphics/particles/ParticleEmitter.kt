@@ -25,12 +25,12 @@ class ParticleEmitter(
 
     var particles = mutableListOf<Particle>()
 
-    private lateinit var particleRenderer: ParticleRenderer
+    private lateinit var particleRenderer: ParticleAbstractRenderer
     private var timeSinceLastEmission = 0f
 
 
     override fun start() {
-        particleRenderer = ParticleRenderer(particleEmitter = this)
+        particleRenderer = ParticleAbstractRenderer(particleEmitter = this)
     }
 
     override fun update() {

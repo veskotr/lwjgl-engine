@@ -1,6 +1,6 @@
 package tiledmap.engineobjects
 
-import graphics.rendering.Renderer
+import graphics.rendering.AbstractRenderer
 import structure.EngineObject
 import tiledmap.engineobjects.model.ObjectCustomProperty
 import tiledmap.engineobjects.model.ObjectProperties
@@ -14,7 +14,7 @@ interface RendererComponentProcessor {
         tileSets: List<TileSet>,
         path: String,
         customProperty: ObjectCustomProperty
-    ): Renderer
+    ): AbstractRenderer
 
 
 }
