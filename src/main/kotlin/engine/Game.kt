@@ -4,14 +4,7 @@ import graphics.rendering.initRendering
 import graphics.rendering.render
 import graphics.rendering.sortRenderersByYAxis
 import graphics.utils.cleanupGraphics
-import io.Camera
-import io.clearWindow
-import io.destroyWindow
-import io.initInput
-import io.initWindow
-import io.pollEvents
-import io.updateInput
-import io.windowShouldClose
+import io.*
 import mu.KotlinLogging
 import physics.physicsTimeStep
 import physics.startPhysics
@@ -75,4 +68,7 @@ private fun updateTime() {
         frames = 0
     }
     lastTime = System.nanoTime()
+}
+fun getTime(): Double {
+    return System.nanoTime().toDouble() / 1000000000.0
 }
