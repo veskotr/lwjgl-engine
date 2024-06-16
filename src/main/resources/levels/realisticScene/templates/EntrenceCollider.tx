@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object name="EntrenceCollider" type="BoxCollider" width="17" height="32"/>
+</template>
