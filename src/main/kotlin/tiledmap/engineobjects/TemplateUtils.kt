@@ -8,13 +8,13 @@ private val objectPropertiesMap: MutableMap<String, ObjectProperties> = mutableM
 
 fun getPropertiesFromTemplate(path: String): ObjectProperties {
     if (!objectPropertiesMap.containsKey(path)) {
-        val objectProperties = extractObjectPropertiesFromTemplateFiel(path)
+        val objectProperties = extractObjectPropertiesFromTemplateFile(path)
         objectPropertiesMap[path] = objectProperties
     }
     return objectPropertiesMap[path]!!
 }
 
-private fun extractObjectPropertiesFromTemplateFiel(path: String): ObjectProperties {
+private fun extractObjectPropertiesFromTemplateFile(path: String): ObjectProperties {
     val inputStream = object {}.javaClass.getResourceAsStream(path)
         ?: error("Could not find template file $path")
     val document = getXmlDocument(inputStream)
