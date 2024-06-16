@@ -13,7 +13,6 @@ import io.pollEvents
 import io.updateInput
 import io.windowShouldClose
 import mu.KotlinLogging
-import physics.physicsDeltaTime
 import physics.physicsTimeStep
 import physics.startPhysics
 import physics.stopPhysicsLoop
@@ -24,6 +23,7 @@ private var frames = 0
 var deltaTime = 0.01f
 private var lastTime = 0L
 lateinit var camera: Camera
+var DEBUG_MODE = false
 
 private val logger = KotlinLogging.logger { }
 
@@ -36,7 +36,7 @@ fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScree
 
 fun startGame() {
     startEngineObjects()
-     startPhysics()
+    startPhysics()
 }
 
 fun runGame() {

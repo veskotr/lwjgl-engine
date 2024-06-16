@@ -16,4 +16,13 @@ class BoxCollider(
     override fun createShape(): Shape {
         return createSquareShape(size.x, size.y)
     }
+
+    override fun getCollisionMesh(): List<Vector2f> {
+        return listOf(
+            Vector2f(-size.x, -size.y),
+            Vector2f(size.x, -size.y),
+            Vector2f(size.x, size.y),
+            Vector2f(-size.x, size.y),
+        )
+    }
 }

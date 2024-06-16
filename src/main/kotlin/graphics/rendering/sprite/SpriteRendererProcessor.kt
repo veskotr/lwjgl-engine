@@ -1,7 +1,7 @@
 package graphics.rendering.sprite
 
 import graphics.Texture
-import graphics.rendering.Renderer
+import graphics.rendering.AbstractRenderer
 import graphics.rendering.SquareModel
 import structure.EngineObject
 import tiledmap.engineobjects.RendererComponentProcessor
@@ -21,13 +21,13 @@ class SpriteRendererProcessor : RendererComponentProcessor {
         tileSets: List<TileSet>,
         path: String,
         customProperty: ObjectCustomProperty
-    ): Renderer {
+    ): AbstractRenderer {
         val sprite = Sprite(
             texture = Texture("/" + customProperty.classValue!![SPRITE]!!.fileValue!!),
             squareModel = SquareModel()
         )
 
-        return SpriteRenderer(
+        return SpriteAbstractRenderer(
             sprite = sprite,
             layerName = engineObject.layerName,
         )

@@ -1,5 +1,7 @@
 package physics
 
+import debug.collision.CollisionDebugRenderer
+import engine.DEBUG_MODE
 import geometry.toVec2
 import geometry.toVector2f
 import org.jbox2d.collision.shapes.Shape
@@ -18,6 +20,8 @@ abstract class Collider(
     density: Float = 1.0f,
     friction: Float = 0.3f,
 ) : EngineComponent() {
+
+    private var debugRenderer: CollisionDebugRenderer? = null
 
     lateinit var body: Body
     lateinit var fixture: Fixture
@@ -62,6 +66,10 @@ abstract class Collider(
 
 
     override fun start() {
+        if (DEBUG_MODE) {
+            debugRenderer = CollisionDebugRenderer(this)
+            debugRenderer!!.parentObject = parentObject
+        }
         val bodyDef = BodyDef()
         bodyDef.userData = this
         bodyDef.type = bodyType
@@ -79,8 +87,12 @@ abstract class Collider(
     }
 
     override fun update() {
-        setPosition(body.position.toVector2f().sub(offsetPosition).mul(INVERSE_SCALE_FACTOR))
+        setPosition(getColliderWorldPosition())
         setRotation(body.angle)
+    }
+
+    fun getColliderWorldPosition(): Vector2f {
+        return body.position.toVector2f().sub(offsetPosition).mul(INVERSE_SCALE_FACTOR)
     }
 
     fun setPhysicsLinearVelocity(velocity: Vector2f) {
@@ -94,4 +106,6 @@ abstract class Collider(
     fun onCollisionExit(other: Collider) {
         parentObject.getCollisionListeners().forEach { it.onCollisionExit(other) }
     }
+
+    abstract fun getCollisionMesh(): List<Vector2f>
 }

@@ -1,9 +1,10 @@
 package structure
 
+import debug.rendering.AbstractDebugRenderer
 import engine.addEngineObject
 import engine.removeEngineObject
 import geometry.Transform
-import graphics.rendering.Renderer
+import graphics.rendering.AbstractRenderer
 import org.joml.Vector2f
 import physics.ICollisionListener
 import kotlin.reflect.KClass
@@ -22,7 +23,7 @@ class EngineObject(
 
     private val children: MutableSet<EngineObject> = mutableSetOf()
 
-    var renderer: Renderer? = null
+    var renderer: AbstractRenderer? = null
         set(value) {
             field = value
             field!!.parentObject = this

@@ -1,7 +1,7 @@
 package graphics.rendering.sprite
 
 import engine.camera
-import graphics.rendering.Renderer
+import graphics.rendering.AbstractRenderer
 import graphics.rendering.defaultShader
 import graphics.shaders.HAS_TEXTURE_UNIFORM
 import graphics.shaders.PROJECTION_UNIFORM
@@ -10,7 +10,7 @@ import graphics.shaders.Shader
 import graphics.shaders.TRANSFORM_UNIFORM
 
 
-class SpriteRenderer(override val shader: Shader = defaultShader, val sprite: Sprite, layerName: String) : Renderer(layerName = layerName) {
+class SpriteAbstractRenderer(override val shader: Shader = defaultShader, val sprite: Sprite, layerName: String) : AbstractRenderer(layerName = layerName) {
 
     override fun render() {
         shader.bind()

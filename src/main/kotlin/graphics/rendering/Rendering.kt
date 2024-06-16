@@ -1,28 +1,31 @@
 package graphics.rendering
 
 import graphics.shaders.createBasicShader
+import graphics.shaders.createDebugShader
 import graphics.shaders.createParticleShader
 
 
 val defaultShader = createBasicShader()
 val particleShader = createParticleShader()
+val debugShader = createDebugShader()
 
-private var renderersMap = mutableMapOf<String, MutableSet<Renderer>>()
+private var renderersMap = mutableMapOf<String, MutableSet<AbstractRenderer>>().toSortedMap()
+
 
 fun initRendering() {
     defaultShader.bindAttributeLocation(0, "vertices")
     defaultShader.bindAttributeLocation(1, "textures")
 }
 
-fun addRenderer(renderer: Renderer, layerName: String) {
+fun addRenderer(abstractRenderer: AbstractRenderer, layerName: String) {
     if (!renderersMap.containsKey(layerName)) {
         addRenderLayer(layerName)
     }
-    renderersMap[layerName]!!.add(renderer)
+    renderersMap[layerName]!!.add(abstractRenderer)
 }
 
-fun removeRenderer(renderer: Renderer, layerName: String) {
-    renderersMap[layerName]?.remove(renderer)
+fun removeRenderer(abstractRenderer: AbstractRenderer, layerName: String) {
+    renderersMap[layerName]?.remove(abstractRenderer)
 }
 
 fun addRenderLayer(layerName: String) {

@@ -86,7 +86,7 @@ fun extractObject(objectElement: Element, tileSets: List<TileSet>, path: String,
         }
 
     if (rendererComponents.size > 1) {
-        logger.warn { "Multiple renderer components found for object ${objectProperties.name}" }
+        logger.warn { "Multiple abstractRenderer components found for object ${objectProperties.name}" }
     }
 
     if (rendererComponents.isNotEmpty()) {
@@ -113,7 +113,7 @@ fun extractObjectProperties(objectElement: Element, path: String): ObjectPropert
     )
     size.mul(0.5f)
 
-    position.sub(size.mul(Vector2f(1.0f, -1.0f), Vector2f()))
+    //position.sub(size.mul(Vector2f(1.0f, -1.0f), Vector2f()))
 
     val rotation = objectElement.getAttribute(ROTATION).let { if (it.isNotEmpty()) it.toFloat() else 0.0f }
 
@@ -123,7 +123,7 @@ fun extractObjectProperties(objectElement: Element, path: String): ObjectPropert
         id = id,
         name = name,
         type = type,
-        position = position.add(size),
+        position = position,
         rotation = rotation,
         size = size,
         tileId = tileId,

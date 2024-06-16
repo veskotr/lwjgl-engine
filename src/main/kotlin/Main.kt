@@ -1,3 +1,4 @@
+import engine.DEBUG_MODE
 import engine.initGame
 import engine.runGame
 import engine.startGame
@@ -12,6 +13,9 @@ import tiledmap.engineobjects.registerEngineComponentProcessor
 import tiledmap.engineobjects.registerRendererComponentProcessor
 
 fun main() {
+
+    DEBUG_MODE = true
+
     initGame(
         windowWidth = 1920,
         windowHeight = 980,

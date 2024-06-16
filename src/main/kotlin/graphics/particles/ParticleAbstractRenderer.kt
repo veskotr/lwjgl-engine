@@ -1,15 +1,15 @@
 package graphics.particles
 
 import engine.camera
-import graphics.rendering.Renderer
+import graphics.rendering.AbstractRenderer
 import graphics.rendering.SquareModel
 import graphics.rendering.particleShader
 import graphics.shaders.PROJECTION_UNIFORM
 import graphics.shaders.SAMPLER_UNIFORM
 import graphics.shaders.TRANSFORM_UNIFORM
 
-class ParticleRenderer(private val particleEmitter: ParticleEmitter) :
-    Renderer(particleShader, particleEmitter.parentObject, layerName = particleEmitter.parentObject.layerName) {
+class ParticleAbstractRenderer(private val particleEmitter: ParticleEmitter) :
+    AbstractRenderer(particleShader, particleEmitter.parentObject, layerName = particleEmitter.parentObject.layerName) {
 
     private val squareModel = SquareModel()
 

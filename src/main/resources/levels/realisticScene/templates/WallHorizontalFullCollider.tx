@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<template>
+ <object name="WallHorizontalFullCollider" type="BoxCollider" width="32" height="8"/>
+</template>
