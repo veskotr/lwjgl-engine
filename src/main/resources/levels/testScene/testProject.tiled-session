@@ -13,8 +13,8 @@
             "scale": 0.4,
             "selectedLayer": 1,
             "viewCenter": {
-                "x": 781.25,
-                "y": 915
+                "x": 780,
+                "y": 912.5
             }
         },
         "map.tmx#Grass": {

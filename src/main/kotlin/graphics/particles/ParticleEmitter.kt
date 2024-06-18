@@ -3,7 +3,7 @@ package graphics.particles
 import engine.deltaTime
 import graphics.rendering.sprite.Sprite
 import org.joml.Vector2f
-import structure.EngineComponent
+import engine.EngineComponent
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.random.Random
@@ -25,12 +25,12 @@ class ParticleEmitter(
 
     var particles = mutableListOf<Particle>()
 
-    private lateinit var particleRenderer: ParticleAbstractRenderer
+    private lateinit var particleRenderer: ParticleRenderer
     private var timeSinceLastEmission = 0f
 
 
     override fun start() {
-        particleRenderer = ParticleAbstractRenderer(particleEmitter = this)
+        particleRenderer = ParticleRenderer(particleEmitter = this)
     }
 
     override fun update() {

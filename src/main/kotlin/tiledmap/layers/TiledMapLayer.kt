@@ -1,6 +1,6 @@
 package tiledmap.layers
 
-import structure.EngineObject
+import engine.EngineObject
 
 class TiledMapLayer(
     val id: Int,

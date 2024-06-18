@@ -4,13 +4,13 @@ import graphics.Texture
 import graphics.rendering.SquareModel
 import org.joml.Vector2f
 
-val defaultSquareModel = SquareModel()
+val defaultSquareModel = SquareModel(size = Vector2f(1.0f))
 
 fun createSprite(texture: Texture): Sprite {
     return Sprite(texture, defaultSquareModel)
 }
 
-fun sliceSpriteSheet(texture: Texture, spriteSize: Vector2f): List<Sprite> {
+fun sliceSpriteSheet(texture: Texture, spriteSize: Vector2f, tileSize: Vector2f): List<Sprite> {
     val glWidth: Float = spriteSize.x / texture.width
     val glHeight: Float = spriteSize.y / texture.height
 
@@ -27,7 +27,7 @@ fun sliceSpriteSheet(texture: Texture, spriteSize: Vector2f): List<Sprite> {
                 j * glWidth + glWidth, i * glHeight + glHeight,
                 j * glWidth, i * glHeight + glHeight
             )
-            sprites.add(Sprite(texture, SquareModel(textureCoordinates)))
+            sprites.add(Sprite(texture, SquareModel(textureCoordinates, tileSize)))
         }
     }
 

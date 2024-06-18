@@ -3,7 +3,8 @@ package graphics.rendering.sprite
 import graphics.Texture
 import graphics.rendering.AbstractRenderer
 import graphics.rendering.SquareModel
-import structure.EngineObject
+import engine.EngineObject
+import org.joml.Vector2f
 import tiledmap.engineobjects.RendererComponentProcessor
 import tiledmap.engineobjects.model.ObjectCustomProperty
 import tiledmap.engineobjects.model.ObjectProperties
@@ -24,7 +25,7 @@ class SpriteRendererProcessor : RendererComponentProcessor {
     ): AbstractRenderer {
         val sprite = Sprite(
             texture = Texture("/" + customProperty.classValue!![SPRITE]!!.fileValue!!),
-            squareModel = SquareModel()
+            squareModel = SquareModel(size = Vector2f(objectProperties.size))
         )
 
         return SpriteRenderer(

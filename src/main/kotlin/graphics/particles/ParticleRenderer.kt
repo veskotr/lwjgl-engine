@@ -7,11 +7,12 @@ import graphics.rendering.particleShader
 import graphics.shaders.PROJECTION_UNIFORM
 import graphics.shaders.SAMPLER_UNIFORM
 import graphics.shaders.TRANSFORM_UNIFORM
+import org.joml.Vector2f
 
-class ParticleAbstractRenderer(private val particleEmitter: ParticleEmitter) :
+class ParticleRenderer(private val particleEmitter: ParticleEmitter) :
     AbstractRenderer(particleShader, particleEmitter.parentObject, layerName = particleEmitter.parentObject.layerName) {
 
-    private val squareModel = SquareModel()
+    private val squareModel = SquareModel(Vector2f(1.0f))
 
     companion object {
         const val ALPHA_UNIFORM = "alpha"

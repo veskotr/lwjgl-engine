@@ -1,6 +1,6 @@
 package graphics.rendering.animations
 
-import structure.EngineObject
+import engine.EngineObject
 
 interface IAnimationFrame {
     val parentObject: EngineObject

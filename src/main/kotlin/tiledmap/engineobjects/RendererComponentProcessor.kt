@@ -1,7 +1,7 @@
 package tiledmap.engineobjects
 
 import graphics.rendering.AbstractRenderer
-import structure.EngineObject
+import engine.EngineObject
 import tiledmap.engineobjects.model.ObjectCustomProperty
 import tiledmap.engineobjects.model.ObjectProperties
 import tiledmap.tilesets.TileSet

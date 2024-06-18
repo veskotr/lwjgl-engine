@@ -1,6 +1,7 @@
 package graphics.rendering
 
 import graphics.utils.createVbo
+import org.joml.Vector2f
 import org.lwjgl.opengl.GL11.glDrawElements
 import org.lwjgl.opengl.GL15.glBindBuffer
 import org.lwjgl.opengl.GL20.GL_ARRAY_BUFFER
@@ -39,28 +40,34 @@ class SquareModel : Model {
         )
     }
 
-    constructor() : this(textures)
+    constructor(size: Vector2f) : this(textures, size)
 
-    constructor(textures: FloatArray) {
-        fillBuffers(textures)
+    constructor(textures: FloatArray, size: Vector2f) {
+        fillBuffers(textures, size)
     }
 
-    constructor(textureBufferId: Int) {
+    constructor(textureBufferId: Int, size: Vector2f) {
         tId = textureBufferId
-        fillVertexBuffer()
+        fillVertexBuffer(size)
     }
 
-    private fun fillVertexBuffer() {
+    private fun fillVertexBuffer(size: Vector2f) {
         count = indices.size
-        vId = createVbo(vertices)
+        val scaledVertices = vertices.mapIndexed { index, value ->
+            if (index % 2 == 0) {
+                value * size.x
+            } else {
+                value * size.y
+            }
+        }.toFloatArray()
+        vId = createVbo(scaledVertices)
         iId = createVbo(indices)
     }
 
-    private fun fillBuffers(texCoords: FloatArray) {
+    private fun fillBuffers(texCoords: FloatArray, size: Vector2f) {
         count = indices.size
         tId = createVbo(texCoords)
-        vId = createVbo(vertices)
-        iId = createVbo(indices)
+       fillVertexBuffer(size)
     }
 
     override fun bindVertexBuffer(vId: Int) {

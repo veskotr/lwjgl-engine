@@ -1,15 +1,17 @@
 package engine
 
+import graphics.rendering.animations.AnimationsComponentProcessor
 import graphics.rendering.initRendering
 import graphics.rendering.render
 import graphics.rendering.sortRenderersByYAxis
+import graphics.rendering.sprite.SpriteRendererProcessor
 import graphics.utils.cleanupGraphics
 import io.*
 import mu.KotlinLogging
-import physics.physicsTimeStep
-import physics.startPhysics
-import physics.stopPhysicsLoop
-import physics.updatePhysics
+import physics.*
+import tiledmap.chunks.registerTileProcessor
+import tiledmap.engineobjects.registerEngineComponentProcessor
+import tiledmap.engineobjects.registerRendererComponentProcessor
 
 private var timePassed = 0.0
 private var frames = 0
@@ -25,6 +27,7 @@ fun initGame(windowWidth: Int, windowHeight: Int, windowTitle: String, fullScree
     initInput()
     initRendering()
     camera = Camera.getInstance(windowWidth, windowHeight)
+    registerProcessors()
 }
 
 fun startGame() {
@@ -71,4 +74,15 @@ private fun updateTime() {
 }
 fun getTime(): Double {
     return System.nanoTime().toDouble() / 1000000000.0
+}
+
+private fun registerProcessors() {
+    registerTileProcessor(type = "BoxCollider", processor = TileBoxColliderProcessor())
+
+    registerEngineComponentProcessor(customType = "AnimationComponent", processor = AnimationsComponentProcessor())
+
+    registerEngineComponentProcessor(customType = "BoxCollider", processor = BoxColliderComponentProcessor())
+
+    registerRendererComponentProcessor(customType = "SpriteRenderer", processor = SpriteRendererProcessor())
+
 }

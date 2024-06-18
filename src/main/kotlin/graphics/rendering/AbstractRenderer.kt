@@ -1,7 +1,7 @@
 package graphics.rendering
 
 import graphics.shaders.Shader
-import structure.EngineObject
+import engine.EngineObject
 
 abstract class AbstractRenderer(open val shader: Shader = defaultShader, var parentObject: EngineObject? = null, var layerName: String) {
 

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="5" nextobjectid="2">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="20" tilewidth="32" tileheight="32" infinite="1" nextlayerid="5" nextobjectid="3">
  <tileset firstgid="1" name="Grass" tilewidth="32" tileheight="32" tilecount="64" columns="8">
   <image source="TX Tileset Grass.png" width="256" height="256"/>
  </tileset>
@@ -659,6 +659,15 @@
      </properties>
     </property>
     <property name="layerName" value="Ground"/>
+    <property name="renderer" type="class" propertytype="SpriteRenderer">
+     <properties>
+      <property name="sprite" type="file" value="tile2.png"/>
+     </properties>
+    </property>
+   </properties>
+  </object>
+  <object id="2" x="128" y="128" width="32" height="32">
+   <properties>
     <property name="renderer" type="class" propertytype="SpriteRenderer">
      <properties>
       <property name="sprite" type="file" value="tile2.png"/>

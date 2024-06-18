@@ -4,7 +4,7 @@ import mu.KotlinLogging
 import org.joml.Vector2f
 import org.joml.Vector4f
 import org.w3c.dom.Element
-import structure.EngineObject
+import engine.EngineObject
 import tiledmap.chunks.X
 import tiledmap.chunks.Y
 import tiledmap.engineobjects.model.CustomPropertyType
@@ -52,7 +52,6 @@ fun extractObject(objectElement: Element, tileSets: List<TileSet>, path: String,
 
     val engineObject = EngineObject(id = objectProperties.id, layerName = layerName)
     engineObject.setPosition(objectProperties.position)
-    engineObject.setScale(objectProperties.size)
     engineObject.setRotation(objectProperties.rotation)
 
     val engineComponents =
@@ -137,7 +136,8 @@ fun extractObjectProperties(objectElement: Element, path: String): ObjectPropert
             type = template.type,
             size = template.size,
             rotation = template.rotation,
-            customProperties = template.customProperties + objectProperties.customProperties
+            customProperties = template.customProperties + objectProperties.customProperties,
+            position = position
         )
     } else {
         objectProperties

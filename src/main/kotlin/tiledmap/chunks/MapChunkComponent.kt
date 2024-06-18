@@ -2,12 +2,12 @@ package tiledmap.chunks
 
 import engine.camera
 import org.joml.Vector2f
-import structure.EngineComponent
-import structure.EngineObject
+import engine.EngineComponent
+import engine.EngineObject
 
 class MapChunkComponent(val worldPosition: Vector2f, val worldSize: Vector2f, val tiles: List<List<EngineObject>>) :
     EngineComponent() {
-    private var wasInView = false
+    private var wasInView = true
 
     override fun start() {
         setTilesActive(wasInView)

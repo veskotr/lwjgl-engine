@@ -11,20 +11,20 @@ const val TILE_WIDTH = "tilewidth"
 const val TILE_HEIGHT = "tileheight"
 private const val MAP_FILE = "map.tmx"
 
-fun createTiledMapFromFile(path: String): TiledMap {
+fun createTiledMapFromFile(path: String, wantedTileSize: Vector2f? = null): TiledMap {
     val inputStream = object {}.javaClass.getResourceAsStream("$path/$MAP_FILE")
         ?: error("Could not find map file $MAP_FILE in $path")
     val document = getXmlDocument(inputStream)
     val mapElement = document.documentElement
 
-    val tileScale =
-        Vector2f(
+    val mapTileSize = wantedTileSize
+        ?: Vector2f(
             mapElement.getAttribute(TILE_WIDTH).toFloat() / 2.0f,
             mapElement.getAttribute(TILE_HEIGHT).toFloat() / 2.0f
         )
     val tileSets = extractTileSets(mapElement, path)
 
-    return TiledMap(extractLayers(mapElement, tileSets, tileScale, path))
+    return TiledMap(extractLayers(mapElement, tileSets, mapTileSize!!, path))
 }
 
 fun getXmlDocument(inputStream: InputStream): Document {

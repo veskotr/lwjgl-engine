@@ -4,8 +4,9 @@ import graphics.Texture
 import graphics.rendering.SquareModel
 import graphics.rendering.sprite.Sprite
 import graphics.rendering.sprite.SpriteAnimationFrame
-import structure.EngineComponent
-import structure.EngineObject
+import engine.EngineComponent
+import engine.EngineObject
+import org.joml.Vector2f
 import tiledmap.engineobjects.EngineComponentProcessor
 import tiledmap.engineobjects.model.ObjectCustomProperty
 import tiledmap.engineobjects.model.ObjectProperties
@@ -30,7 +31,8 @@ class AnimationsComponentProcessor : EngineComponentProcessor {
                     Sprite(
                         texture = textureAtlas,
                         squareModel = SquareModel(
-                            getTextureBufferIdForSprite(textureAtlas, 0, 2, 2, 4, false)
+                            getTextureBufferIdForSprite(textureAtlas, 0, 2, 2, 4, false),
+                            size = Vector2f(objectProperties.size)
                         )
                     )
                 )
@@ -44,7 +46,8 @@ class AnimationsComponentProcessor : EngineComponentProcessor {
                     Sprite(
                         texture = textureAtlas,
                         squareModel = SquareModel(
-                            getTextureBufferIdForSprite(textureAtlas, 0, 2, 2, 4, true)
+                            getTextureBufferIdForSprite(textureAtlas, 0, 2, 2, 4, true),
+                            size = Vector2f(objectProperties.size)
                         )
                     )
                 )
@@ -59,7 +62,8 @@ class AnimationsComponentProcessor : EngineComponentProcessor {
                     Sprite(
                         texture = textureAtlas,
                         squareModel = SquareModel(
-                            getTextureBufferIdForSprite(textureAtlas, 0, 1, 2, 4, false)
+                            getTextureBufferIdForSprite(textureAtlas, 0, 1, 2, 4, false),
+                            size = Vector2f(objectProperties.size)
                         )
                     )
                 )
@@ -74,7 +78,8 @@ class AnimationsComponentProcessor : EngineComponentProcessor {
                     Sprite(
                         texture = textureAtlas,
                         squareModel = SquareModel(
-                            getTextureBufferIdForSprite(textureAtlas, 0, 0, 2, 4, false)
+                            getTextureBufferIdForSprite(textureAtlas, 0, 0, 2, 4, false),
+                            size = Vector2f(objectProperties.size)
                         )
                     )
                 )

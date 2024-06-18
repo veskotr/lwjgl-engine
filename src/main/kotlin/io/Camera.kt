@@ -3,7 +3,7 @@ package io
 import org.joml.Matrix4f
 import org.joml.Vector2f
 import org.joml.Vector3f
-import structure.EngineObject
+import engine.EngineObject
 
 class Camera private constructor(val width: Int, val height: Int) {
 

@@ -1,7 +1,7 @@
 package graphics.rendering.sprite
 
 import graphics.rendering.animations.IAnimationFrame
-import structure.EngineObject
+import engine.EngineObject
 
 class SpriteAnimationFrame(override val parentObject: EngineObject, val sprite: Sprite): IAnimationFrame {
 

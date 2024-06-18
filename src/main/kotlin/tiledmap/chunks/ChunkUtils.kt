@@ -3,8 +3,8 @@ package tiledmap.chunks
 import org.joml.Vector2f
 import org.joml.Vector2i
 import org.w3c.dom.Element
-import structure.EngineComponent
-import structure.EngineObject
+import engine.EngineComponent
+import engine.EngineObject
 import tiledmap.engineobjects.TileObjectProcessor
 import tiledmap.tilesets.TileSet
 
@@ -15,16 +15,16 @@ const val Y = "y"
 
 val tileProcessors: MutableMap<String, TileObjectProcessor<*>> = mutableMapOf()
 
-fun extractChunk(chunkElement: Element, tileSets: List<TileSet>, tileScale: Vector2f, layerName: String): EngineObject {
+fun extractChunk(chunkElement: Element, tileSets: List<TileSet>, tileSize: Vector2f, layerName: String): EngineObject {
     val chunkSize = Vector2i(chunkElement.getAttribute(WIDTH).toInt(), chunkElement.getAttribute(HEIGHT).toInt())
     val chunkPosition = Vector2i(chunkElement.getAttribute(X).toInt(), chunkElement.getAttribute(Y).toInt())
 
     val chunkString = chunkElement.textContent
 
-    val tiles = extractChunkTiles(chunkString, chunkSize, Vector2f(chunkPosition), tileScale, tileSets, layerName)
+    val tiles = extractChunkTiles(chunkString, chunkSize, Vector2f(chunkPosition), tileSize, tileSets, layerName)
 
-    val chunkWorldSize = calculateChunkWorldSize(chunkSize, tileScale)
-    val chunkWorldPosition = calculateChunkWorldPosition(chunkPosition, tileScale, chunkWorldSize)
+    val chunkWorldSize = calculateChunkWorldSize(chunkSize, tileSize)
+    val chunkWorldPosition = calculateChunkWorldPosition(chunkPosition, tileSize, chunkWorldSize)
 
     val chunkComponent = MapChunkComponent(chunkWorldPosition, chunkWorldSize, tiles)
 
@@ -38,9 +38,9 @@ private fun extractChunkTiles(
     chunkCSVString: String,
     chunkSize: Vector2i,
     chunkPosition: Vector2f,
-    tileScale: Vector2f,
+    tileSize: Vector2f,
     tileSets: List<TileSet>,
-    layerName: String
+    layerName: String,
 ): List<List<EngineObject>> {
     val tileRows = chunkCSVString.split("\n").map { it.trim() }.filter { it.isNotEmpty() }
 
@@ -50,11 +50,11 @@ private fun extractChunkTiles(
         val row = mutableListOf<EngineObject>()
         for (x in 0 until chunkSize.x) {
             val tileId = tileRows[y].split(",")[x].toInt()
-            val tilePosition = Vector2f(chunkPosition).mul(tileScale.mul(2.0f, Vector2f()))
-                .add(Vector2f(x.toFloat(), y.toFloat()).mul(tileScale.mul(2.0f, Vector2f())))
+            val tilePosition = Vector2f(chunkPosition).mul(tileSize.mul(2.0f, Vector2f()))
+                .add(tileSize.mul(2.0f, Vector2f()).mul(x.toFloat(), y.toFloat()))
             tilePosition.mul(1.0f, -1.0f)
 
-            row.add(createTile(tileId, tilePosition, tileScale, tileSets, layerName))
+            row.add(createTile(tileId, tilePosition, tileSets, layerName, tileSize))
         }
         tiles.add(row)
     }
@@ -65,16 +65,15 @@ private fun extractChunkTiles(
 private fun createTile(
     tileId: Int,
     position: Vector2f,
-    scale: Vector2f,
     tileSets: List<TileSet>,
-    layerName: String
+    layerName: String,
+    tileSize: Vector2f
 ): EngineObject {
     val tileSet = tileSets.firstOrNull { it.firstGrid <= tileId && it.firstGrid + it.tileCount > tileId }
 
-    val tile = tileSet?.createTile(tileId, position, scale, layerName) ?: EngineObject(
+    val tile = tileSet?.createTile(tileId, position, layerName, tileSize) ?: EngineObject(
         tileId,
         position,
-        scale,
         layerName = layerName
     )
 
@@ -82,14 +81,14 @@ private fun createTile(
         return tile
     }
 
-    processTileProperties(tileSet, tileId, tile).forEach { tile.addComponent(it) }
+    processTileProperties(tileSet, tileId, tile, tileSize).forEach { tile.addComponent(it) }
 
     return tile
 }
 
-private fun processTileProperties(tileSet: TileSet, tileId: Int, tile: EngineObject): List<EngineComponent> {
+private fun processTileProperties(tileSet: TileSet, tileId: Int, tile: EngineObject, tileSize: Vector2f): List<EngineComponent> {
     return tileSet.getTileProperties(tileId).filter { tileProcessors.containsKey(it.type) }
-        .map { tileProcessors[it.type]!!.processObjectToComponent(tile = tile, objectProperties = it) }
+        .map { tileProcessors[it.type]!!.processObjectToComponent(tile = tile, objectProperties = it, tileSize) }
 }
 
 private fun calculateChunkWorldSize(chunkSize: Vector2i, tileScale: Vector2f): Vector2f {

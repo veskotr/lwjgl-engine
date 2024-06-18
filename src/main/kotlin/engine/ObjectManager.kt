@@ -1,7 +1,5 @@
 package engine
 
-import structure.IEngineObject
-
 private var engineObjects: MutableList<IEngineObject> = mutableListOf()
 
 fun addEngineObject(engineObject: IEngineObject) {

@@ -1,6 +1,6 @@
 package graphics.rendering.animations
 
-import structure.EngineComponent
+import engine.EngineComponent
 
 class AnimationsComponent(val animations: MutableMap<String, Animation>) : EngineComponent() {
 

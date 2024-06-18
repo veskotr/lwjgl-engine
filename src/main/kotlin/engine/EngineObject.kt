@@ -1,8 +1,5 @@
-package structure
+package engine
 
-import debug.rendering.AbstractDebugRenderer
-import engine.addEngineObject
-import engine.removeEngineObject
 import geometry.Transform
 import graphics.rendering.AbstractRenderer
 import org.joml.Vector2f
@@ -12,7 +9,7 @@ import kotlin.reflect.KClass
 class EngineObject(
     val id: Int? = null,
     position: Vector2f = Vector2f(),
-    scale: Vector2f = Vector2f(),
+    scale: Vector2f = Vector2f(1.0f),
     val index: Int = id ?: 0,
     val layerName: String
 ) : IEngineObject {
@@ -58,6 +55,7 @@ class EngineObject(
 
     override fun update() {
         if (!active) return
+
         components.forEach(IEngineObject::update)
         children.forEach(IEngineObject::update)
     }

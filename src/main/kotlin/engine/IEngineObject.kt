@@ -1,4 +1,4 @@
-package structure
+package engine
 
 interface IEngineObject {
     fun start()

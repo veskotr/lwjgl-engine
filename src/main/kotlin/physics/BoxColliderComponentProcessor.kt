@@ -2,8 +2,8 @@ package physics
 
 import org.jbox2d.dynamics.BodyType
 import org.joml.Vector2f
-import structure.EngineComponent
-import structure.EngineObject
+import engine.EngineComponent
+import engine.EngineObject
 import tiledmap.chunks.X
 import tiledmap.chunks.Y
 import tiledmap.engineobjects.EngineComponentProcessor

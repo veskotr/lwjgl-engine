@@ -2,7 +2,6 @@ package engine
 
 import physics.Collider
 import physics.ICollisionListener
-import structure.EngineComponent
 
 class CameraComponent: EngineComponent(), ICollisionListener{
 

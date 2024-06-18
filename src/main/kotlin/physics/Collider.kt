@@ -11,7 +11,7 @@ import org.jbox2d.dynamics.BodyType
 import org.jbox2d.dynamics.Fixture
 import org.jbox2d.dynamics.FixtureDef
 import org.joml.Vector2f
-import structure.EngineComponent
+import engine.EngineComponent
 
 abstract class Collider(
     offsetPosition: Vector2f = Vector2f(),

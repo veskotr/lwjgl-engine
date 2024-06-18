@@ -1,4 +1,4 @@
-package structure
+package engine
 
 import org.joml.Vector2f
 import physics.Collider

@@ -5,7 +5,7 @@ import graphics.rendering.SquareModel
 import graphics.rendering.sprite.Sprite
 import graphics.rendering.sprite.SpriteRenderer
 import org.joml.Vector2f
-import structure.EngineObject
+import engine.EngineObject
 import tiledmap.engineobjects.model.ObjectProperties
 
 class TileSet(
@@ -15,14 +15,18 @@ class TileSet(
     val tileCount: Int,
     private val tileTemplateProperties: Map<Int, List<ObjectProperties>>
 ) {
-    fun createTile(tileId: Int, position: Vector2f, scale: Vector2f, layerName: String): EngineObject {
+    fun createTile(
+        tileId: Int,
+        position: Vector2f,
+        layerName: String,
+        tileSize: Vector2f
+    ): EngineObject {
         val engineObject = EngineObject(id = tileId, layerName = layerName)
         engineObject.setPosition(position)
-        engineObject.setScale(scale)
         engineObject.renderer = SpriteRenderer(
             sprite = Sprite(
                 textureAtlas,
-                SquareModel(bufferIds[tileId]!!)
+                SquareModel(bufferIds[tileId]!!, tileSize)
             ), layerName = layerName
         )
         return engineObject

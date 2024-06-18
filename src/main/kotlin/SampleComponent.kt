@@ -9,7 +9,7 @@ import org.lwjgl.glfw.GLFW.GLFW_KEY_S
 import org.lwjgl.glfw.GLFW.GLFW_KEY_W
 import physics.Collider
 import physics.ICollisionListener
-import structure.EngineComponent
+import engine.EngineComponent
 
 class SampleComponent : EngineComponent(), ICollisionListener {
 

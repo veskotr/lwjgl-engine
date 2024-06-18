@@ -1,7 +1,7 @@
 package graphics.rendering.animations
 
 import engine.getTime
-import structure.IEngineObject
+import engine.IEngineObject
 
 class Animation(
     fps: Int,

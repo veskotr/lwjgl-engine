@@ -27,15 +27,7 @@ fun main() {
 
     setWorldGravity(Vector2f(0f, 0f))
 
-    registerTileProcessor(type = "BoxCollider", processor = TileBoxColliderProcessor())
-
-    registerEngineComponentProcessor(customType = "AnimationComponent", processor = AnimationsComponentProcessor())
-
-    registerEngineComponentProcessor(customType = "BoxCollider", processor = BoxColliderComponentProcessor())
-
     registerEngineComponentProcessor(customType = "SampleComponent", processor = SampleComponentProcessor())
-
-    registerRendererComponentProcessor(customType = "SpriteRenderer", processor = SpriteRendererProcessor())
 
     val map = createTiledMapFromFile("/levels/realisticScene")
 
