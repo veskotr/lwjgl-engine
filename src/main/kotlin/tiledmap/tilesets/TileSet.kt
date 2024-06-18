@@ -3,7 +3,7 @@ package tiledmap.tilesets
 import graphics.Texture
 import graphics.rendering.SquareModel
 import graphics.rendering.sprite.Sprite
-import graphics.rendering.sprite.SpriteAbstractRenderer
+import graphics.rendering.sprite.SpriteRenderer
 import org.joml.Vector2f
 import structure.EngineObject
 import tiledmap.engineobjects.model.ObjectProperties
@@ -19,7 +19,7 @@ class TileSet(
         val engineObject = EngineObject(id = tileId, layerName = layerName)
         engineObject.setPosition(position)
         engineObject.setScale(scale)
-        engineObject.renderer = SpriteAbstractRenderer(
+        engineObject.renderer = SpriteRenderer(
             sprite = Sprite(
                 textureAtlas,
                 SquareModel(bufferIds[tileId]!!)

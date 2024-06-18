@@ -40,7 +40,7 @@
         "map.tmx"
     ],
     "project": "realisticScene.tiled-project",
-    "property.type": "string",
+    "property.type": "SpriteRenderer",
     "recentFiles": [
         "map.tmx"
     ],

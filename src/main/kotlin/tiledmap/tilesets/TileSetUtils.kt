@@ -41,23 +41,23 @@ private fun extractTileSet(tileSetElement: Element, path: String): TileSet {
     val columns = tileSetElement.getAttribute(COLUMNS).toInt()
     val rows = tileCount / columns
 
-    val glWith = tileSize.x / textureAtlas.width
+    val glWidth = tileSize.x / textureAtlas.width
     val glHeight = tileSize.y / textureAtlas.height
 
-    val bufferIds = sliceTileSet(firstGid, rows, columns, glWith, glHeight)
+    val bufferIds = sliceTileSet(firstGid, rows, columns, glWidth, glHeight)
 
     return TileSet(textureAtlas, firstGid, bufferIds, tileCount, extractTileSetObjectProperties(tileSetElement, path, firstGid))
 }
 
-private fun sliceTileSet(firstGrid: Int, rows: Int, columns: Int, glWith: Float, glHeight: Float): Map<Int, Int> {
+fun sliceTileSet(firstGrid: Int, rows: Int, columns: Int, glWidth: Float, glHeight: Float): Map<Int, Int> {
     val bufferIds = mutableMapOf<Int, Int>()
     for (row in 0 until rows) {
         for (column in 0 until columns) {
             val textureCoordinates = floatArrayOf(
-                column * glWith, row * glHeight,
-                column * glWith + glWith, row * glHeight,
-                column * glWith, row * glHeight + glHeight,
-                column * glWith + glWith, row * glHeight + glHeight
+                column * glWidth, row * glHeight,
+                column * glWidth + glWidth, row * glHeight,
+                column * glWidth, row * glHeight + glHeight,
+                column * glWidth + glWidth, row * glHeight + glHeight
             )
             val tileId = firstGrid + row * columns + column
             bufferIds[tileId] = createVbo(textureCoordinates)
@@ -65,7 +65,6 @@ private fun sliceTileSet(firstGrid: Int, rows: Int, columns: Int, glWith: Float,
     }
     return bufferIds
 }
-
 
 private fun extractTileSetTextureAtlas(tileSetElement: Element, path: String): Texture {
     val tileSetImageSrc = (tileSetElement.getElementsByTagName(IMAGE).item(0) as Element).getAttribute(SOURCE)

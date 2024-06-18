@@ -27,7 +27,7 @@ class SpriteRendererProcessor : RendererComponentProcessor {
             squareModel = SquareModel()
         )
 
-        return SpriteAbstractRenderer(
+        return SpriteRenderer(
             sprite = sprite,
             layerName = engineObject.layerName,
         )

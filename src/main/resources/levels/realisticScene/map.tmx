@@ -639,8 +639,9 @@
   </data>
  </layer>
  <objectgroup id="4" name="Object Layer 1">
-  <object id="1" x="226.882" y="161.417" width="28" height="48">
+  <object id="1" x="226.882" y="161.417" width="48" height="68">
    <properties>
+    <property name="animation" type="class" propertytype="AnimationComponent"/>
     <property name="behaviourComponent" type="class" propertytype="SampleComponent"/>
     <property name="collider" type="class" propertytype="BoxCollider">
      <properties>

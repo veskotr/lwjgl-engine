@@ -2,6 +2,7 @@ import engine.DEBUG_MODE
 import engine.initGame
 import engine.runGame
 import engine.startGame
+import graphics.rendering.animations.AnimationsComponentProcessor
 import graphics.rendering.sprite.SpriteRendererProcessor
 import org.joml.Vector2f
 import physics.BoxColliderComponentProcessor
@@ -27,6 +28,8 @@ fun main() {
     setWorldGravity(Vector2f(0f, 0f))
 
     registerTileProcessor(type = "BoxCollider", processor = TileBoxColliderProcessor())
+
+    registerEngineComponentProcessor(customType = "AnimationComponent", processor = AnimationsComponentProcessor())
 
     registerEngineComponentProcessor(customType = "BoxCollider", processor = BoxColliderComponentProcessor())
 

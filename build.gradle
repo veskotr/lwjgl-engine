@@ -52,40 +52,42 @@ repositories {
 }
 
 dependencies {
+    implementation 'io.github.microutils:kotlin-logging-jvm:2.0.11'
+    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.6'
+
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.4")
+
+    implementation platform("org.lwjgl:lwjgl-bom:$lwjglVersion")
 
     implementation 'commons-io:commons-io:2.16.1'
 
     implementation name: 'jbox2d-library-2.2.1.1'
-    implementation 'io.github.microutils:kotlin-logging-jvm:2.0.11'
-    implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.6'
 
     implementation "org.lwjgl:lwjgl"
-
-    implementation "org.lwjgl:lwjgl"
+    implementation "org.lwjgl:lwjgl-assimp"
     implementation "org.lwjgl:lwjgl-bgfx"
     implementation "org.lwjgl:lwjgl-freetype"
     implementation "org.lwjgl:lwjgl-glfw"
     implementation "org.lwjgl:lwjgl-harfbuzz"
     implementation "org.lwjgl:lwjgl-nanovg"
+    implementation "org.lwjgl:lwjgl-nuklear"
     implementation "org.lwjgl:lwjgl-openal"
     implementation "org.lwjgl:lwjgl-opengl"
-    implementation "org.lwjgl:lwjgl-shaderc"
-    implementation "org.lwjgl:lwjgl-spvc"
+    implementation "org.lwjgl:lwjgl-par"
     implementation "org.lwjgl:lwjgl-stb"
-    implementation "org.lwjgl:lwjgl-yoga"
+    implementation "org.lwjgl:lwjgl-vulkan"
     runtimeOnly "org.lwjgl:lwjgl::$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-assimp::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-bgfx::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-freetype::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-glfw::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-harfbuzz::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-nanovg::$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-nuklear::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-openal::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-opengl::$lwjglNatives"
-    runtimeOnly "org.lwjgl:lwjgl-shaderc::$lwjglNatives"
-    runtimeOnly "org.lwjgl:lwjgl-spvc::$lwjglNatives"
+    runtimeOnly "org.lwjgl:lwjgl-par::$lwjglNatives"
     runtimeOnly "org.lwjgl:lwjgl-stb::$lwjglNatives"
-    runtimeOnly "org.lwjgl:lwjgl-yoga::$lwjglNatives"
     if (lwjglNatives == "natives-macos" || lwjglNatives == "natives-macos-arm64") runtimeOnly "org.lwjgl:lwjgl-vulkan::$lwjglNatives"
     implementation "org.joml:joml:${jomlVersion}"
 

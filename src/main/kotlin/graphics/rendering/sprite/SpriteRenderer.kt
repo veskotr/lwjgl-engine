@@ -10,7 +10,7 @@ import graphics.shaders.Shader
 import graphics.shaders.TRANSFORM_UNIFORM
 
 
-class SpriteAbstractRenderer(override val shader: Shader = defaultShader, val sprite: Sprite, layerName: String) : AbstractRenderer(layerName = layerName) {
+class SpriteRenderer(override val shader: Shader = defaultShader, var sprite: Sprite, layerName: String) : AbstractRenderer(layerName = layerName) {
 
     override fun render() {
         shader.bind()
