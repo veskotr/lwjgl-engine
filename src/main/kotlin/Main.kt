@@ -1,21 +1,18 @@
 import engine.DEBUG_MODE
+import engine.DEBUG_OCCLUDERS
+import engine.EngineObject
 import engine.initGame
 import engine.runGame
 import engine.startGame
-import graphics.rendering.animations.AnimationsComponentProcessor
-import graphics.rendering.sprite.SpriteRendererProcessor
 import org.joml.Vector2f
-import physics.BoxColliderComponentProcessor
-import physics.TileBoxColliderProcessor
 import physics.setWorldGravity
-import tiledmap.chunks.registerTileProcessor
 import tiledmap.createTiledMapFromFile
 import tiledmap.engineobjects.registerEngineComponentProcessor
-import tiledmap.engineobjects.registerRendererComponentProcessor
 
 fun main() {
 
     DEBUG_MODE = true
+    DEBUG_OCCLUDERS = true
 
     initGame(
         windowWidth = 1920,
@@ -26,6 +23,9 @@ fun main() {
     )
 
     setWorldGravity(Vector2f(0f, 0f))
+
+    val engineObject: EngineObject = EngineObject(987, layerName = "layer1")
+    engineObject.addComponent(TestComponent())
 
     registerEngineComponentProcessor(customType = "SampleComponent", processor = SampleComponentProcessor())
 

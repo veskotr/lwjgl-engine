@@ -14,21 +14,23 @@
             "scaleInEditor": 1
         },
         "map.tmx": {
-            "scale": 1.19,
-            "selectedLayer": 3,
+            "scale": 1.32,
+            "selectedLayer": 2,
             "viewCenter": {
-                "x": 107.56302521008402,
-                "y": 190.33613445378154
+                "x": -2.651515151515156,
+                "y": 109.46969696969697
             }
         },
         "map.tmx#Grass": {
             "scaleInDock": 1
         },
         "map.tmx#Structures": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         },
         "map.tmx#Walls": {
-            "scaleInDock": 1
+            "scaleInDock": 1,
+            "scaleInEditor": 1
         }
     },
     "last.imagePath": "/Users/A1CF452/Desktop/projects/lwjgl-engine/src/main/resources/levels/realisticScene",
@@ -40,7 +42,7 @@
         "map.tmx"
     ],
     "project": "realisticScene.tiled-project",
-    "property.type": "SpriteRenderer",
+    "property.type": "LightOccluder",
     "recentFiles": [
         "map.tmx"
     ],

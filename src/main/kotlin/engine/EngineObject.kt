@@ -20,11 +20,7 @@ class EngineObject(
 
     private val children: MutableSet<EngineObject> = mutableSetOf()
 
-    var renderer: AbstractRenderer? = null
-        set(value) {
-            field = value
-            field!!.parentObject = this
-        }
+    val renderers: MutableSet<AbstractRenderer> = mutableSetOf()
 
     var parent: EngineObject? = null
 
@@ -34,9 +30,8 @@ class EngineObject(
 
             children.forEach { it.active = value }
 
-            if (renderer != null) {
-                renderer?.setActive(value)
-            }
+            renderers.forEach { it.setActive(value) }
+
             field = value
         }
 
@@ -58,6 +53,16 @@ class EngineObject(
 
         components.forEach(IEngineObject::update)
         children.forEach(IEngineObject::update)
+    }
+
+    fun addRenderer(renderer: AbstractRenderer) {
+        renderer.parentObject = this
+        renderer.setLayer(layerName)
+        renderers.add(renderer)
+    }
+
+    fun addRenderers(renderers: Set<AbstractRenderer>) {
+        renderers.forEach { addRenderer(it) }
     }
 
     fun addComponent(component: EngineComponent): EngineComponent {

@@ -123,6 +123,16 @@
     <object id="1" type="BoxCollider" x="0" y="0" width="30" height="32"/>
    </objectgroup>
   </tile>
+  <tile id="68">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="24" y="0" width="8" height="8"/>
+   </objectgroup>
+  </tile>
+  <tile id="72">
+   <objectgroup draworder="index" id="2">
+    <object id="1" type="BoxCollider" x="0" y="0" width="10" height="8"/>
+   </objectgroup>
+  </tile>
   <tile id="102">
    <objectgroup draworder="index" id="2">
     <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
@@ -213,7 +223,11 @@
   </tile>
   <tile id="53">
    <objectgroup draworder="index" id="2">
-    <object id="1" template="templates/WallCollider.tx" x="24" y="0"/>
+    <object id="1" template="templates/WallCollider.tx" x="24" y="0">
+     <properties>
+      <property name="occluder" type="class" propertytype="LightOccluder"/>
+     </properties>
+    </object>
    </objectgroup>
   </tile>
   <tile id="55">
@@ -224,11 +238,17 @@
   <tile id="77">
    <objectgroup draworder="index" id="3">
     <object id="2" template="templates/WallTopCollider.tx" type="BoxCollider" x="0" y="0"/>
+    <object id="3" type="BoxCollider" x="0" y="18" width="16" height="14"/>
    </objectgroup>
   </tile>
   <tile id="78">
    <objectgroup draworder="index" id="2">
-    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0"/>
+    <object id="1" template="templates/WallTopCollider.tx" x="0" y="0">
+     <properties>
+      <property name="occluder" type="class" propertytype="LightOccluder"/>
+     </properties>
+    </object>
+    <object id="2" type="BoxCollider" x="16" y="18" width="16" height="14"/>
    </objectgroup>
   </tile>
   <tile id="81">

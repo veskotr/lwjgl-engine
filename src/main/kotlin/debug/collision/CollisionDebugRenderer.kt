@@ -22,7 +22,7 @@ class CollisionDebugRenderer(private val collider: Collider) : AbstractDebugRend
         shader.bind()
         shader.setUniform("projection", camera.projection)
         shader.setUniform(
-            "model", Matrix4f().translate(Vector3f(collider.body.position.toVector2f().mul(INVERSE_SCALE_FACTOR), 0f))
+            "model", Matrix4f().scale(Vector3f(2.0f))//.translate(Vector3f(collider.body.position.toVector2f().mul(INVERSE_SCALE_FACTOR), 0f))
         )
         shader.setUniform(
             "color", Vector4f(1.0f, 0f, 0f, 1.0f)

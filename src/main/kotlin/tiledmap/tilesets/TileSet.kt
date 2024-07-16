@@ -1,11 +1,11 @@
 package tiledmap.tilesets
 
+import engine.EngineObject
 import graphics.Texture
 import graphics.rendering.SquareModel
 import graphics.rendering.sprite.Sprite
 import graphics.rendering.sprite.SpriteRenderer
 import org.joml.Vector2f
-import engine.EngineObject
 import tiledmap.engineobjects.model.ObjectProperties
 
 class TileSet(
@@ -23,11 +23,13 @@ class TileSet(
     ): EngineObject {
         val engineObject = EngineObject(id = tileId, layerName = layerName)
         engineObject.setPosition(position)
-        engineObject.renderer = SpriteRenderer(
-            sprite = Sprite(
-                textureAtlas,
-                SquareModel(bufferIds[tileId]!!, tileSize)
-            ), layerName = layerName
+        engineObject.addRenderer(
+            SpriteRenderer(
+                sprite = Sprite(
+                    textureAtlas,
+                    SquareModel(bufferIds[tileId]!!, tileSize)
+                ), layerName = layerName
+            )
         )
         return engineObject
     }

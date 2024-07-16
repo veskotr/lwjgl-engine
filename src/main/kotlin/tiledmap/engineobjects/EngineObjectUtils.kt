@@ -89,7 +89,7 @@ fun extractObject(objectElement: Element, tileSets: List<TileSet>, path: String,
     }
 
     if (rendererComponents.isNotEmpty()) {
-        engineObject.renderer = rendererComponents.first()
+        engineObject.addRenderers(rendererComponents.toSet())
     }
 
     engineComponents.forEach(engineObject::addComponent)

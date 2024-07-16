@@ -1,7 +1,9 @@
 package physics
 
 import debug.collision.CollisionDebugRenderer
+import engine.DEBUG_COLLIDERS
 import engine.DEBUG_MODE
+import engine.EngineComponent
 import geometry.toVec2
 import geometry.toVector2f
 import org.jbox2d.collision.shapes.Shape
@@ -11,7 +13,6 @@ import org.jbox2d.dynamics.BodyType
 import org.jbox2d.dynamics.Fixture
 import org.jbox2d.dynamics.FixtureDef
 import org.joml.Vector2f
-import engine.EngineComponent
 
 abstract class Collider(
     offsetPosition: Vector2f = Vector2f(),
@@ -21,7 +22,7 @@ abstract class Collider(
     friction: Float = 0.3f,
 ) : EngineComponent() {
 
-    private var debugRenderer: CollisionDebugRenderer? = null
+    var debugRenderer: CollisionDebugRenderer? = null
 
     lateinit var body: Body
     lateinit var fixture: Fixture
@@ -66,7 +67,7 @@ abstract class Collider(
 
 
     override fun start() {
-        if (DEBUG_MODE) {
+        if (DEBUG_MODE && DEBUG_COLLIDERS) {
             debugRenderer = CollisionDebugRenderer(this)
             debugRenderer!!.parentObject = parentObject
         }

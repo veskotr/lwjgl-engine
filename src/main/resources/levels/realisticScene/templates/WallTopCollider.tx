@@ -1,4 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <template>
- <object name="WallTopCollider" type="BoxCollider" width="32" height="18"/>
+ <object name="WallTopCollider" type="BoxCollider" width="32" height="18">
+  <properties>
+   <property name="occluder" type="class" propertytype="LightOccluder"/>
+  </properties>
+ </object>
 </template>

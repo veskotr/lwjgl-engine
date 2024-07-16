@@ -19,6 +19,9 @@ var deltaTime = 0.01f
 private var lastTime = 0L
 lateinit var camera: Camera
 var DEBUG_MODE = false
+var DEBUG_COLLIDERS = false
+var DEBUG_OCCLUDERS = false
+
 
 private val logger = KotlinLogging.logger { }
 
